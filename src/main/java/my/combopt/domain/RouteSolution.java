@@ -33,7 +33,7 @@ public class RouteSolution {
 
     public void print() {
         this.getRouteSteps().forEach(step -> {
-            System.out.println(step.getCurrentVertex().getId() + " -> " + step.getNextVertex().getId());
+            System.out.println(step.getCurrentVertex().getId() + " -> " + step.getNextVertex().getId() + " (" + step.getIsActive() + ")");
         });
     }
 
@@ -57,12 +57,18 @@ public class RouteSolution {
         // V4   E3  V3
         // E4 E5/E6 E2
         // V1   E1  V2
-        Edge e1 = new Edge(1, v1, v2, 1.0, false);
-        Edge e2 = new Edge(2, v2, v3, 1.0, false);
-        Edge e3 = new Edge(3, v3, v4, 1.0, false);
-        Edge e4 = new Edge(4, v4, v1, 1.0, false);
-        Edge e5 = new Edge(5, v1, v3, 1.0, false);
-        Edge e6 = new Edge(6, v4, v2, 1.0, false);
+        Edge e1 = new Edge(1, v1, v2, 1.0);
+        Edge e2 = new Edge(2, v2, v3, 1.0);
+        Edge e3 = new Edge(3, v3, v4, 1.0);
+        Edge e4 = new Edge(4, v4, v1, 1.0);
+        Edge e5 = new Edge(5, v1, v3, 1.0);
+        Edge e6 = new Edge(6, v4, v2, 1.0);
+        Edge e7 = new Edge(7, v2, v1, 1.0);
+        Edge e8 = new Edge(8, v3, v2, 1.0);
+        Edge e9 = new Edge(9, v4, v3, 1.0);
+        Edge e10 = new Edge(10, v1, v4, 1.0);
+        Edge e11 = new Edge(11, v3, v1, 1.0);
+        Edge e12 = new Edge(12, v2, v4, 1.0);
 
         problem.setAdjacencyListWithWeights(Map.of(
                 v1, List.of(
@@ -87,7 +93,7 @@ public class RouteSolution {
                 )
         ));
         problem.setVertexList(List.of(v1, v2, v3, v4));
-        problem.setEdgeList(List.of(e1, e2, e3, e4, e5, e6));
+        problem.setEdgeList(List.of(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12));
 
         List<RouteStep> routeSteps = new ArrayList<>();
         Set<Vertex> visited = new HashSet<>();
@@ -151,8 +157,8 @@ public class RouteSolution {
                 .anyMatch(adjacentVertexWithWeight -> adjacentVertexWithWeight.getVertex().equals(to));
     }
 
-    @ValueRangeProvider(id = "vertexRange")
-    public List<Vertex> getVertexRange() {
-        return vertexList;
+    @ValueRangeProvider(id = "statusRange")
+    public List<Boolean> getStatusRange() {
+        return List.of(true, false);
     }
 }
