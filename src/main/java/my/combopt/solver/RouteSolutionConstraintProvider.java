@@ -19,7 +19,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
             stepsAreChained(constraintFactory),
             minimizeTotalWeight(constraintFactory),
             invalidEdgePenalty(constraintFactory),
-            routeStartsAndEndsAtSameVertex(constraintFactory)
+//            routeIsACycle(constraintFactory)
         };
     }
 
@@ -59,7 +59,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
     public Constraint minimizeTotalWeight(ConstraintFactory constraintFactory) {
         return constraintFactory
                 .forEach(RouteStep.class)
-                .filter(routeStep -> routeStep.getNextVertex() != null)
+                .filter(RouteStep::getIsActive)
                 .join(Edge.class,
                         Joiners.equal(RouteStep::getCurrentVertex, Edge::getStart),
                         Joiners.equal(RouteStep::getNextVertex, Edge::getEnd))
@@ -70,18 +70,20 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
     public Constraint invalidEdgePenalty(ConstraintFactory constraintFactory) {
         return constraintFactory
                 .forEach(RouteStep.class)
-                .filter(routeStep -> routeStep.getNextVertex() != null)
+                .filter(RouteStep::getIsActive)
                 .filter(routeStep -> !routeStep.getCurrentVertex().getNeighbours().contains(routeStep.getNextVertex()))
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("nonAdjacentPenalty");
     }
 
-    private Constraint routeStartsAndEndsAtSameVertex(ConstraintFactory constraintFactory) {
+    private Constraint routeIsACycle(ConstraintFactory constraintFactory) {
+        // Route starts with the same vertex as it ends
         return constraintFactory
                 .forEach(RouteStep.class)
-                .filter(RouteStep::isRouteStart)
+                .filter(RouteStep::getIsActive)
                 .join(RouteStep.class,
-                        Joiners.filtering((firstStep, lastStep) -> lastStep.isRouteEnd()))
+                        Joiners.filtering((step1, step2) -> step2.getIsActive() && (step1.getPreviousStep() == null || !step1.getPreviousStep().getIsActive())),
+                        Joiners.filtering((step1, step2) -> step2.getIsActive() && (step2.getNextStep() == null || !step2.getNextStep().getIsActive())))
                 .penalize(HardSoftScore.ONE_HARD,
                         (firstStep, lastStep) -> firstStep.getCurrentVertex().equals(lastStep.getNextVertex()) ? 0 : 1)
                 .asConstraint("startAndEndAtSameVertex");

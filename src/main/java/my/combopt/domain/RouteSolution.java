@@ -101,8 +101,13 @@ public class RouteSolution {
 
 //        List<RouteStep> routeSteps = RouteInitSolutionGenerator.generateInitialSolution(problem.getAdjacencyListWithWeights());
 
-        routeSteps.get(0).setRouteStart(true);
-        routeSteps.get(routeSteps.size() - 1).setRouteEnd(true);
+        // For each route step, set next step
+        for (int i = 0; i < routeSteps.size(); i++) {
+            RouteStep currentStep = routeSteps.get(i);
+            RouteStep nextStep = routeSteps.get((i + 1) % routeSteps.size());
+            currentStep.setNextStep(nextStep);
+            nextStep.setPreviousStep(currentStep);
+        }
         problem.setRouteSteps(routeSteps);
 
         return problem;
@@ -160,5 +165,10 @@ public class RouteSolution {
     @ValueRangeProvider(id = "statusRange")
     public List<Boolean> getStatusRange() {
         return List.of(true, false);
+    }
+
+    @ValueRangeProvider(id = "routeStepRange")
+    public List<RouteStep> getRouteStepRange() {
+        return routeSteps;
     }
 }
