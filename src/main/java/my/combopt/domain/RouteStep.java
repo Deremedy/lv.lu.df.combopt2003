@@ -16,8 +16,13 @@ public class RouteStep {
     private RouteStep previousStep;
     private RouteStep nextStep;
 
+    private boolean isActive;
+
     @PlanningVariable(valueRangeProviderRefs = "vertexRange")
     private Vertex nextVertex;
+
+    private boolean isRouteStart;
+    private boolean isRouteEnd;
 
     @ShadowVariable(variableListenerClass = CumulativeWeightUpdatingVariableListener.class,
             sourceVariableName = "nextVertex")
@@ -26,5 +31,6 @@ public class RouteStep {
     public RouteStep(Vertex current, Vertex next) {
         this.currentVertex = current;
         this.nextVertex = next;
+        this.isActive = true;
     }
 }

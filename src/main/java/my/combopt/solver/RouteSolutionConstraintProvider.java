@@ -6,7 +6,6 @@ import ai.timefold.solver.core.api.score.stream.ConstraintFactory;
 import ai.timefold.solver.core.api.score.stream.ConstraintProvider;
 import ai.timefold.solver.core.api.score.stream.Joiners;
 import my.combopt.domain.Edge;
-import my.combopt.domain.RouteSolution;
 import my.combopt.domain.RouteStep;
 
 public class RouteSolutionConstraintProvider implements ConstraintProvider {
@@ -14,7 +13,8 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
     public Constraint[] defineConstraints(ConstraintFactory constraintFactory) {
         return new Constraint[] {
             minimizeTotalWeight(constraintFactory),
-//            nonAdjacentPenalty(constraintFactory),
+            invalidEdgePenalty(constraintFactory),
+            startAndEndAtSameVertex(constraintFactory)
         };
     }
 
@@ -28,14 +28,24 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                 .asConstraint("minimizeTotalWeight");
     }
 
-//    private Constraint nonAdjacentPenalty(ConstraintFactory constraintFactory) {
-//        return constraintFactory.forEach(RouteStep.class)
-//                .filter(routeStep -> {
-//                    // Access RouteSolution and check adjacency
-//                    RouteSolution solution = (RouteSolution) scoreDirector.getWorkingSolution();
-//                    return !solution.isAdjacent(routeStep.getCurrentVertex(), routeStep.getNextVertex());
-//                })
-//                .penalize(HardSoftScore.ONE_HARD, routeStep -> 1)
-//                .asConstraint("Non-adjacent vertex penalty");
-//    }
+
+    public Constraint invalidEdgePenalty(ConstraintFactory constraintFactory) {
+        return constraintFactory
+                .forEach(RouteStep.class)
+                .filter(routeStep -> routeStep.getNextVertex() != null)
+                .filter(routeStep -> !routeStep.getCurrentVertex().getNeighbours().contains(routeStep.getNextVertex()))
+                .penalize(HardSoftScore.ONE_HARD)
+                .asConstraint("nonAdjacentPenalty");
+    }
+
+    private Constraint startAndEndAtSameVertex(ConstraintFactory constraintFactory) {
+        return constraintFactory
+                .forEach(RouteStep.class)
+                .filter(RouteStep::isRouteStart)
+                .join(RouteStep.class,
+                        Joiners.filtering((firstStep, lastStep) -> lastStep.isRouteEnd()))
+                .penalize(HardSoftScore.ONE_HARD,
+                        (firstStep, lastStep) -> firstStep.getCurrentVertex().equals(lastStep.getNextVertex()) ? 0 : 1)
+                .asConstraint("startAndEndAtSameVertex");
+    }
 }

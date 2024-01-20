@@ -49,6 +49,11 @@ public class RouteSolution {
         Vertex v3 = new Vertex(3, 1.0, 1.0);
         Vertex v4 = new Vertex(4, 0.0, 1.0);
 
+        v1.setNeighbours(List.of(v2, v3, v4));
+        v2.setNeighbours(List.of(v1, v3, v4));
+        v3.setNeighbours(List.of(v1, v2, v4));
+        v4.setNeighbours(List.of(v1, v2, v3));
+
         // V4   E3  V3
         // E4 E5/E6 E2
         // V1   E1  V2
@@ -84,14 +89,14 @@ public class RouteSolution {
         problem.setVertexList(List.of(v1, v2, v3, v4));
         problem.setEdgeList(List.of(e1, e2, e3, e4, e5, e6));
 
-        // DFS to create initial RouteSteps for directed edges
-//        List<RouteStep> routeSteps = performDirectedDFS(v1, problem.getAdjacencyListWithWeights());
-//        problem.setRouteSteps(routeSteps);
-
         List<RouteStep> routeSteps = new ArrayList<>();
         Set<Vertex> visited = new HashSet<>();
         dfsTraversal(v1, visited, problem.getAdjacencyListWithWeights(), routeSteps);
 
+//        List<RouteStep> routeSteps = RouteInitSolutionGenerator.generateInitialSolution(problem.getAdjacencyListWithWeights());
+
+        routeSteps.get(0).setRouteStart(true);
+        routeSteps.get(routeSteps.size() - 1).setRouteEnd(true);
         problem.setRouteSteps(routeSteps);
 
         return problem;
@@ -99,19 +104,31 @@ public class RouteSolution {
 
     private static void dfsTraversal(Vertex current, Set<Vertex> visited, Map<Vertex, List<AdjacentVertexWithWeight>> adjacencyList, List<RouteStep> steps) {
         visited.add(current);
+
+        // Separate neighbors into unvisited and visited
+        List<Vertex> unvisitedNeighbors = new ArrayList<>();
+        List<Vertex> visitedNeighbors = new ArrayList<>();
         for (AdjacentVertexWithWeight adjacent : adjacencyList.get(current)) {
             Vertex next = adjacent.getVertex();
-
-            // Traverse to next vertex
-            steps.add(new RouteStep(current, next));
-
-            // If the next vertex is unvisited, continue DFS from there
-            if (!visited.contains(next)) {
-                dfsTraversal(next, visited, adjacencyList, steps);
+            if (visited.contains(next)) {
+                visitedNeighbors.add(next);
+            } else {
+                unvisitedNeighbors.add(next);
             }
+        }
 
-            // Traverse back
-            steps.add(new RouteStep(next, current));
+        // First, traverse to all unvisited neighbors
+        for (Vertex next : unvisitedNeighbors) {
+            steps.add(new RouteStep(current, next)); // Traverse to next vertex
+            dfsTraversal(next, visited, adjacencyList, steps); // Continue DFS from there
+            steps.add(new RouteStep(next, current)); // Traverse back
+        }
+
+        // Then, traverse to visited neighbors
+        for (Vertex next : visitedNeighbors) {
+            steps.add(new RouteStep(current, next)); // Traverse to next vertex
+            // No need to call dfsTraversal since 'next' is already visited
+            steps.add(new RouteStep(next, current)); // Traverse back
         }
     }
 

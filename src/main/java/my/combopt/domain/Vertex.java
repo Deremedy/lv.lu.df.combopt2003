@@ -4,9 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter @Setter @NoArgsConstructor
 public class Vertex {
     private long id;
+    private List<Vertex> neighbours;
     private Double lat;
     private Double lon;
 
