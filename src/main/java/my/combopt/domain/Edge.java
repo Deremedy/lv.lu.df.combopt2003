@@ -10,7 +10,6 @@ public class Edge {
     private Vertex start;
     private Vertex end;
     private double weight; // svars = ielas garums (metros)
-    private boolean isOneWay; // vai iela ir vienvirziena
 
     public Edge(long id, Vertex start, Vertex end, double weight) {
         this.id = id;

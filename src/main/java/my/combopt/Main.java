@@ -12,6 +12,7 @@ import ai.timefold.solver.core.config.solver.termination.TerminationConfig;
 import my.combopt.domain.RouteSolution;
 import my.combopt.domain.RouteStep;
 import my.combopt.solver.RouteSolutionConstraintProvider;
+import my.combopt.utils.ProblemGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +20,9 @@ import org.slf4j.LoggerFactory;
 public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
-        RouteSolution problem = RouteSolution.generateData();
+        ProblemGenerator problemGenerator = new ProblemGenerator();
+        RouteSolution problem = problemGenerator.getProblem1();
+//        RouteSolution problem = problemGenerator.generateProblem();
         problem.print();
 
         SolverFactory<RouteSolution> solverFactoryFromXML = SolverFactory
@@ -29,7 +32,6 @@ public class Main {
                 new SolverConfig()
                         .withSolutionClass(RouteSolution.class)
                         .withEntityClasses(RouteStep.class)
-                        //.withEasyScoreCalculatorClass(ScoreCalculator.class)
                         .withConstraintProviderClass(RouteSolutionConstraintProvider.class)
                         .withTerminationConfig(new TerminationConfig()
                                 .withSecondsSpentLimit(30L))
@@ -44,8 +46,5 @@ public class Main {
         LOGGER.info(scoreExplanation.getSummary());
 
         solution.print();
-
     }
-
-
 }
