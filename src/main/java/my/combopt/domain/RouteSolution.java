@@ -6,6 +6,7 @@ import ai.timefold.solver.core.api.domain.solution.PlanningSolution;
 import ai.timefold.solver.core.api.domain.solution.ProblemFactCollectionProperty;
 import ai.timefold.solver.core.api.domain.valuerange.ValueRangeProvider;
 import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +29,7 @@ public class RouteSolution {
 
     private Vertex startVertex;
 
-    private Map<Vertex, List<AdjacentVertexWithWeight>> adjacencyListWithWeights;
+    private Map<Long, List<AdjacentVertexWithWeight>> adjacencyListWithWeights;
 
     @PlanningEntityCollectionProperty
     private List<RouteStep> routeSteps;
@@ -61,11 +62,13 @@ public class RouteSolution {
     }
 
     @ValueRangeProvider(id = "statusRange")
+    @JsonIgnore
     public List<Boolean> getStatusRange() {
         return List.of(true, false);
     }
 
     @ValueRangeProvider(id = "routeStepRange")
+    @JsonIgnore
     public List<RouteStep> getRouteStepRange() {
         return routeSteps;
     }

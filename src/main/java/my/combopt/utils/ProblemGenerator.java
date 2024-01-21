@@ -43,22 +43,22 @@ public class ProblemGenerator {
         Edge e12 = new Edge(12, v2, v4, 1.0);
 
         problem.setAdjacencyListWithWeights(Map.of(
-                v1, List.of(
+                1L, List.of(
                         new AdjacentVertexWithWeight(v2, 1.0),
                         new AdjacentVertexWithWeight(v3, 1.0),
                         new AdjacentVertexWithWeight(v4, 1.0)
                 ),
-                v2, List.of(
+                2L, List.of(
                         new AdjacentVertexWithWeight(v1, 1.0),
                         new AdjacentVertexWithWeight(v3, 1.0),
                         new AdjacentVertexWithWeight(v4, 1.0)
                 ),
-                v3, List.of(
+                3L, List.of(
                         new AdjacentVertexWithWeight(v1, 1.0),
                         new AdjacentVertexWithWeight(v2, 1.0),
                         new AdjacentVertexWithWeight(v4, 1.0)
                 ),
-                v4, List.of(
+                4L, List.of(
                         new AdjacentVertexWithWeight(v1, 1.0),
                         new AdjacentVertexWithWeight(v2, 1.0),
                         new AdjacentVertexWithWeight(v3, 1.0)
@@ -93,13 +93,13 @@ public class ProblemGenerator {
         return problem;
     }
 
-    private static void dfsTraversal(Vertex current, Set<Vertex> visited, Map<Vertex, List<AdjacentVertexWithWeight>> adjacencyList, List<RouteStep> steps) {
+    private static void dfsTraversal(Vertex current, Set<Vertex> visited, Map<Long, List<AdjacentVertexWithWeight>> adjacencyList, List<RouteStep> steps) {
         visited.add(current);
 
         // Separate neighbors into unvisited and visited
         List<Vertex> unvisitedNeighbors = new ArrayList<>();
         List<Vertex> visitedNeighbors = new ArrayList<>();
-        for (AdjacentVertexWithWeight adjacent : adjacencyList.getOrDefault(current, Collections.emptyList())) {
+        for (AdjacentVertexWithWeight adjacent : adjacencyList.getOrDefault(current.getId(), Collections.emptyList())) {
             Vertex next = adjacent.getVertex();
             if (visited.contains(next)) {
                 visitedNeighbors.add(next);
@@ -180,7 +180,7 @@ public class ProblemGenerator {
             }
 
             JSONObject adjacencyList = json.getJSONObject("adj_list");
-            Map<Vertex, List<AdjacentVertexWithWeight>> adjacencyListWithWeights = new HashMap<>();
+            Map<Long, List<AdjacentVertexWithWeight>> adjacencyListWithWeights = new HashMap<>();
 
             // Parsing adjacency list
             for (String key : adjacencyList.keySet()) {
@@ -192,19 +192,19 @@ public class ProblemGenerator {
                     double weight = adjacentVertex.getDouble("weight");
                     adjacentVerticesWithWeights.add(new AdjacentVertexWithWeight(vertices.get(id), weight));
                 }
-                adjacencyListWithWeights.put(vertices.get(Long.parseLong(key)), adjacentVerticesWithWeights);
+                adjacencyListWithWeights.put(Long.parseLong(key), adjacentVerticesWithWeights);
             }
 
             // Parsing edges
             List<Edge> edges = new ArrayList<>();
-            adjacencyListWithWeights.forEach((vertex, adjacentVertices) -> {
+            adjacencyListWithWeights.forEach((vertexId, adjacentVertices) -> {
                 for (AdjacentVertexWithWeight adjacentVertex : adjacentVertices) {
-                    edges.add(new Edge(edges.size() + 1, vertex, adjacentVertex.getVertex(), adjacentVertex.getWeight()));
+                    edges.add(new Edge(edges.size() + 1, vertices.get(vertexId), adjacentVertex.getVertex(), adjacentVertex.getWeight()));
                 }
             });
 
             vertices.forEach((id, vertex) -> {
-                List<AdjacentVertexWithWeight> adjacentVertices = adjacencyListWithWeights.getOrDefault(vertex, Collections.emptyList());
+                List<AdjacentVertexWithWeight> adjacentVertices = adjacencyListWithWeights.getOrDefault(id, Collections.emptyList());
                 vertex.setNeighbours(adjacentVertices.stream().map(AdjacentVertexWithWeight::getVertex).map(Vertex::getId).toList());
             });
 

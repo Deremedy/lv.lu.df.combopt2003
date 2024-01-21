@@ -38,9 +38,30 @@
         <solver>
             <localSearch>
                 <unionMoveSelector>
-                    <subListChangeMoveSelector />
-                    <listChangeMoveSelector />
-                    <listSwapMoveSelector />
+                    <changeMoveSelector>
+                        <valueSelector variableName="isActive"/>
+                    </changeMoveSelector>
+                    <swapMoveSelector>
+                        <variableNameIncludes>
+                            <variableNameInclude>isActive</variableNameInclude>
+                        </variableNameIncludes>
+                    </swapMoveSelector>
+
+                    <subChainChangeMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <valueSelector variableName="nextStep"/>
+                    </subChainChangeMoveSelector>
+
+                    <subChainSwapMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <secondarySubChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </secondarySubChainSelector>
+                    </subChainSwapMoveSelector>
                 </unionMoveSelector>
                 <acceptor>
                     <valueTabuSize>5</valueTabuSize>
@@ -56,9 +77,30 @@
         <solver>
             <localSearch>
                 <unionMoveSelector>
-                    <subListChangeMoveSelector />
-                    <listChangeMoveSelector />
-                    <listSwapMoveSelector />
+                    <changeMoveSelector>
+                        <valueSelector variableName="isActive"/>
+                    </changeMoveSelector>
+                    <swapMoveSelector>
+                        <variableNameIncludes>
+                            <variableNameInclude>isActive</variableNameInclude>
+                        </variableNameIncludes>
+                    </swapMoveSelector>
+
+                    <subChainChangeMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <valueSelector variableName="nextStep"/>
+                    </subChainChangeMoveSelector>
+
+                    <subChainSwapMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <secondarySubChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </secondarySubChainSelector>
+                    </subChainSwapMoveSelector>
                 </unionMoveSelector>
                 <acceptor>
                     <valueTabuSize>10</valueTabuSize>
@@ -74,9 +116,30 @@
         <solver>
             <localSearch>
                 <unionMoveSelector>
-                    <subListChangeMoveSelector />
-                    <listChangeMoveSelector />
-                    <listSwapMoveSelector />
+                    <changeMoveSelector>
+                        <valueSelector variableName="isActive"/>
+                    </changeMoveSelector>
+                    <swapMoveSelector>
+                        <variableNameIncludes>
+                            <variableNameInclude>isActive</variableNameInclude>
+                        </variableNameIncludes>
+                    </swapMoveSelector>
+
+                    <subChainChangeMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <valueSelector variableName="nextStep"/>
+                    </subChainChangeMoveSelector>
+
+                    <subChainSwapMoveSelector>
+                        <subChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </subChainSelector>
+                        <secondarySubChainSelector>
+                            <valueSelector variableName="nextStep"/>
+                        </secondarySubChainSelector>
+                    </subChainSwapMoveSelector>
                 </unionMoveSelector>
                 <acceptor>
                     <lateAcceptanceSize>400</lateAcceptanceSize>
