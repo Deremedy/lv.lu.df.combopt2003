@@ -32,11 +32,22 @@ public class RouteSolution {
     private List<RouteStep> routeSteps;
 
     public void print() {
-        this.getRouteSteps().forEach(step -> {
-            System.out.println(step.getCurrentVertex().getId() + " -> " + step.getNextVertex().getId() + " (" + step.getIsActive() + ")");
-        });
-    }
+        if (routeSteps == null || routeSteps.isEmpty()) {
+            System.out.println("No route steps available.");
+            return;
+        }
 
+        RouteStep currentStep = routeSteps.get(0); // Assuming the first step is the start of the route
+        boolean isStart = true;
+        while (currentStep != null && (isStart || !currentStep.equals(routeSteps.get(0)))) {
+            if (!currentStep.getIsActive()) {
+                currentStep = currentStep.getNextStep();
+            }
+            System.out.println(currentStep.getStartVertex().getId() + " -> " + currentStep.getEndVertex().getId());
+            currentStep = currentStep.getNextStep();
+            isStart = false;
+        }
+    }
     public static RouteSolution generateData() {
         RouteSolution problem = new RouteSolution();
         problem.setSolutionId("P1");
@@ -95,9 +106,11 @@ public class RouteSolution {
         problem.setVertexList(List.of(v1, v2, v3, v4));
         problem.setEdgeList(List.of(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12));
 
+        Vertex startVertex = v1;
         List<RouteStep> routeSteps = new ArrayList<>();
+        routeSteps.add(new RouteStep(startVertex, startVertex));
         Set<Vertex> visited = new HashSet<>();
-        dfsTraversal(v1, visited, problem.getAdjacencyListWithWeights(), routeSteps);
+        dfsTraversal(startVertex, visited, problem.getAdjacencyListWithWeights(), routeSteps);
 
 //        List<RouteStep> routeSteps = RouteInitSolutionGenerator.generateInitialSolution(problem.getAdjacencyListWithWeights());
 
@@ -106,8 +119,9 @@ public class RouteSolution {
             RouteStep currentStep = routeSteps.get(i);
             RouteStep nextStep = routeSteps.get((i + 1) % routeSteps.size());
             currentStep.setNextStep(nextStep);
-            nextStep.setPreviousStep(currentStep);
+            nextStep.setPrevStep(currentStep);
         }
+        routeSteps.get(routeSteps.size() - 1).setNextStep(routeSteps.get(0)); // Set last step to point to first step
         problem.setRouteSteps(routeSteps);
 
         return problem;

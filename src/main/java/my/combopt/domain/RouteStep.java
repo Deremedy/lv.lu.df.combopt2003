@@ -12,10 +12,11 @@ import lombok.Setter;
 @PlanningEntity
 @Setter @Getter @NoArgsConstructor
 public class RouteStep {
-    private Vertex currentVertex;
+    private Vertex startVertex;
+    private Vertex endVertex;
 
     @InverseRelationShadowVariable(sourceVariableName = "nextStep")
-    private RouteStep previousStep;
+    private RouteStep prevStep;
 
     @PlanningVariable(valueRangeProviderRefs = "routeStepRange",
             graphType = PlanningVariableGraphType.CHAINED)
@@ -27,15 +28,13 @@ public class RouteStep {
     @PlanningVariable(valueRangeProviderRefs = "statusRange")
     private Boolean isActive;
 
-    private Vertex nextVertex;
-
 //    @ShadowVariable(variableListenerClass = CumulativeWeightUpdatingVariableListener.class,
 //            sourceVariableName = "nextVertex")
 //    private Double cumulativeWeight;
 
     public RouteStep(Vertex current, Vertex next) {
-        this.currentVertex = current;
-        this.nextVertex = next;
+        this.startVertex = current;
+        this.endVertex = next;
         this.isActive = true;
     }
 }
