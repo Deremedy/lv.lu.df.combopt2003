@@ -38,14 +38,23 @@ public class RouteSolution {
         }
 
         RouteStep currentStep = routeSteps.get(0); // Assuming the first step is the start of the route
-        boolean isStart = true;
-        while (currentStep != null && (isStart || !currentStep.equals(routeSteps.get(0)))) {
-            if (!currentStep.getIsActive()) {
-                currentStep = currentStep.getNextStep();
+        RouteStep startStep = routeSteps.get(0);
+        boolean firstStep = true;
+
+        while (currentStep != null) {
+            if (currentStep.equals(startStep) && !firstStep) {
+                break;
             }
-            System.out.println(currentStep.getStartVertex().getId() + " -> " + currentStep.getEndVertex().getId());
+
+            firstStep = false;
+//            if (!currentStep.getIsActive()) {
+//                currentStep = currentStep.getNextStep();
+//                continue;
+//            }
+//            System.out.println(currentStep.getStartVertex().getId() + " -> " + currentStep.getEndVertex().getId() + " (" + currentStep.getId() + ")");
+            System.out.println(currentStep.getStartVertex().getId() + " -> " + currentStep.getEndVertex().getId() + " (" + currentStep.getIsActive() + ")");
+
             currentStep = currentStep.getNextStep();
-            isStart = false;
         }
     }
     public static RouteSolution generateData() {
@@ -122,6 +131,13 @@ public class RouteSolution {
             nextStep.setPrevStep(currentStep);
         }
         routeSteps.get(routeSteps.size() - 1).setNextStep(routeSteps.get(0)); // Set last step to point to first step
+        routeSteps.get(0).setStart(true); // Set first step as anchor
+
+        for (int i = 1; i < routeSteps.size(); i++) {
+            RouteStep currentStep = routeSteps.get(i);
+            currentStep.setAnchor(routeSteps.get(0)); // All subsequent steps in the same chain have the same anchor
+        }
+
         problem.setRouteSteps(routeSteps);
 
         return problem;

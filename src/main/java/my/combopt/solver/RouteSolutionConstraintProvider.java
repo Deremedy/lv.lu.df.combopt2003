@@ -16,7 +16,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
         return new Constraint[] {
             minimizeActiveStepCount(constraintFactory),
             visitedAllEdges(constraintFactory),
-            stepsAreChained(constraintFactory),
+//            stepsAreChained(constraintFactory),
             minimizeTotalWeight(constraintFactory),
             invalidEdgePenalty(constraintFactory),
 //            routeIsACycle(constraintFactory)
@@ -34,12 +34,10 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
     public Constraint visitedAllEdges(ConstraintFactory constraintFactory) {
         return constraintFactory
                 .forEach(Edge.class)
-                .join(
-                        RouteStep.class,
+                .ifNotExists(RouteStep.class,
                         Joiners.equal(Edge::getStart, RouteStep::getStartVertex),
-                        Joiners.equal(Edge::getEnd, RouteStep::getEndVertex)
-                )
-                .filter((edge, routeStep) -> !routeStep.getIsActive())
+                        Joiners.equal(Edge::getEnd, RouteStep::getEndVertex),
+                        Joiners.filtering((edge, routeStep) -> routeStep.getIsActive()))
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("visitedAllEdges");
     }
@@ -49,12 +47,37 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                 .forEach(RouteStep.class)
                 .filter(RouteStep::getIsActive)  // Only consider active steps
                 .join(RouteStep.class,
-                        Joiners.equal(RouteStep::getEndVertex, RouteStep::getStartVertex),
-                        Joiners.filtering((step1, step2) -> step2.getIsActive())) // Join with next active step
-                .filter((step1, step2) -> !Objects.equals(step1.getNextStep(), step2)) // Check if steps are chained
-                .penalize(HardSoftScore.ONE_HARD, (step1, step2) -> 1)
+                        Joiners.filtering((step1, step2) -> step2.getIsActive()),  // Join with next active step
+                        Joiners.filtering((step1, step2) -> {
+                            RouteStep nextActiveStep = step1.getNextStep();
+                            while (!nextActiveStep.getIsActive()) {
+                                nextActiveStep = nextActiveStep.getNextStep();
+                            }
+                            return Objects.equals(nextActiveStep,step2);  // Find the next active step in the chain
+                        }))
+                .penalize(HardSoftScore.ONE_HARD, (step1, step2) ->
+                        !Objects.equals(step1.getEndVertex(), step2.getStartVertex()) ? 1 : 0)
                 .asConstraint("stepsAreChained");
     }
+
+//    public Constraint stepsAreChained(ConstraintFactory constraintFactory) {
+//        return constraintFactory
+//                .forEach(RouteStep.class)
+//                .filter(RouteStep::getIsActive)  // Only consider active steps
+//                .join(RouteStep.class,
+//                        Joiners.filtering((step1, step2) -> step2.getIsActive()),  // Join with next active step
+//                        Joiners.filtering((step1, step2) -> {
+//                            RouteStep nextActiveStep = step1.getNextStep();
+//                            while (nextActiveStep != null && !nextActiveStep.getIsActive()) {
+//                                nextActiveStep = nextActiveStep.getNextStep();
+//                            }
+//                            return nextActiveStep == step2;  // Find the next active step in the chain
+//                        }))
+//                .penalize(HardSoftScore.ONE_HARD, (step1, step2) ->
+//                        !Objects.equals(step1.getEndVertex(), step2.getStartVertex()) ? 1 : 0)
+//                .asConstraint("stepsAreChained");
+//    }
+
 
     public Constraint minimizeTotalWeight(ConstraintFactory constraintFactory) {
         return constraintFactory
@@ -72,6 +95,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                 .forEach(RouteStep.class)
                 .filter(RouteStep::getIsActive)
                 .filter(routeStep -> !routeStep.getStartVertex().getNeighbours().contains(routeStep.getEndVertex()))
+                .filter(routeStep -> !routeStep.isStart())
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("nonAdjacentPenalty");
     }

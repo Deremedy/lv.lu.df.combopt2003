@@ -12,6 +12,9 @@ import lombok.Setter;
 @PlanningEntity
 @Setter @Getter @NoArgsConstructor
 public class RouteStep {
+    private static int nextId = 0;
+
+    private int id;
     private Vertex startVertex;
     private Vertex endVertex;
 
@@ -28,11 +31,10 @@ public class RouteStep {
     @PlanningVariable(valueRangeProviderRefs = "statusRange")
     private Boolean isActive;
 
-//    @ShadowVariable(variableListenerClass = CumulativeWeightUpdatingVariableListener.class,
-//            sourceVariableName = "nextVertex")
-//    private Double cumulativeWeight;
+    private boolean isStart;
 
     public RouteStep(Vertex current, Vertex next) {
+        this.id = nextId++;
         this.startVertex = current;
         this.endVertex = next;
         this.isActive = true;
