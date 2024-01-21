@@ -5,6 +5,7 @@ import ai.timefold.solver.core.api.domain.variable.AnchorShadowVariable;
 import ai.timefold.solver.core.api.domain.variable.InverseRelationShadowVariable;
 import ai.timefold.solver.core.api.domain.variable.PlanningVariable;
 import ai.timefold.solver.core.api.domain.variable.PlanningVariableGraphType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +20,12 @@ public class RouteStep {
     private Vertex endVertex;
 
     @InverseRelationShadowVariable(sourceVariableName = "nextStep")
+//    @JsonIgnore
     private RouteStep prevStep;
 
     @PlanningVariable(valueRangeProviderRefs = "routeStepRange",
             graphType = PlanningVariableGraphType.CHAINED)
+//    @JsonIgnore
     private RouteStep nextStep;
 
     @AnchorShadowVariable(sourceVariableName = "nextStep")

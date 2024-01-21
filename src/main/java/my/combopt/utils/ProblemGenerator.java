@@ -21,10 +21,10 @@ public class ProblemGenerator {
         Vertex v3 = new Vertex(3, 1.0, 1.0);
         Vertex v4 = new Vertex(4, 0.0, 1.0);
 
-        v1.setNeighbours(List.of(v2, v3, v4));
-        v2.setNeighbours(List.of(v1, v3, v4));
-        v3.setNeighbours(List.of(v1, v2, v4));
-        v4.setNeighbours(List.of(v1, v2, v3));
+        v1.setNeighbours(List.of(2L, 3L, 4L));
+        v2.setNeighbours(List.of(1L, 3L, 4L));
+        v3.setNeighbours(List.of(1L, 2L, 4L));
+        v4.setNeighbours(List.of(1L, 2L, 3L));
 
         // V4   E3  V3
         // E4 E5/E6 E2
@@ -124,7 +124,7 @@ public class ProblemGenerator {
     }
 
     public RouteSolution getProblem1() {
-        RouteSolution problem = generateProblemFromJson("data/problem118.json");
+        RouteSolution problem = generateProblemFromJson("data/problems/problem118_500.json");
         problem.setSolutionId("P2");
 
         problem.setStartVertex(problem.getVertexList().get(0));
@@ -205,7 +205,7 @@ public class ProblemGenerator {
 
             vertices.forEach((id, vertex) -> {
                 List<AdjacentVertexWithWeight> adjacentVertices = adjacencyListWithWeights.getOrDefault(vertex, Collections.emptyList());
-                vertex.setNeighbours(adjacentVertices.stream().map(AdjacentVertexWithWeight::getVertex).toList());
+                vertex.setNeighbours(adjacentVertices.stream().map(AdjacentVertexWithWeight::getVertex).map(Vertex::getId).toList());
             });
 
             // Create and return RouteSolution object

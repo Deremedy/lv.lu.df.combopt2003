@@ -94,7 +94,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
         return constraintFactory
                 .forEach(RouteStep.class)
                 .filter(RouteStep::getIsActive)
-                .filter(routeStep -> !routeStep.getStartVertex().getNeighbours().contains(routeStep.getEndVertex()))
+                .filter(routeStep -> !routeStep.getStartVertex().getNeighbours().contains(routeStep.getEndVertex().getId()))
                 .filter(routeStep -> !routeStep.isStart())
                 .penalize(HardSoftScore.ONE_HARD)
                 .asConstraint("nonAdjacentPenalty");
