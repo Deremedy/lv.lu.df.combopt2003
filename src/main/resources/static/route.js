@@ -63,45 +63,62 @@ function renderRoutes(solution, indictments) {
          indictmentMap[indictment.indictedObjectID] = indictment;
     })
 
-    const vehicle_div = $("#vehicle_container");
-    solution.vehicleList.forEach((vehicle) => {
+    const steps_div = $("#route_steps_container");
+    var step_counter = 1;
+    var is_route_step = true;
+    // Get first step in the route
+    var routeStartStep = solution.routeSteps.find((step) => step.id === 0);
+    let next_step = routeStartStep;
 
-        var v_badge = "badge bg-danger";
-        if (indictmentMap[vehicle.regNr]==null || getHardScore(indictmentMap[vehicle.regNr].score)==0) { v_badge = "badge bg-success"; }
-        vehicle_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="' +
-        'capacity=' + vehicle.capacity +
+    while (next_step) {
+        var step_badge = "badge bg-danger";
+        var routeIndictmentId = 'RouteStep'+next_step.id;
+        if (indictmentMap[routeIndictmentId]==null || getHardScore(indictmentMap[routeIndictmentId].score)==0) { step_badge = "badge bg-success"; }
+        if (!next_step.isActive) { step_badge = "badge bg-secondary"; }
+        steps_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="' +
+        'startVertex=' + next_step.startVertex + '</br>' +
+        'endVertex=' + next_step.endVertex + '</br>' +
         '<hr>' +
-        getEntityPopoverContent(vehicle.regNr, indictmentMap) +
-        '" data-bs-original-title="'+ vehicle.regNr + ' (' + vehicle.capacity + ')' +'"><span class="'+ v_badge +'">'+
-        vehicle.regNr + ' (' + vehicle.capacity + ')' +'</span></a>'));
-        var visit_nr = 1;
-        vehicle.visits.forEach((visit) => {
-            var visit_badge = "badge bg-danger";
-            if (indictmentMap[visit.name] == null || getHardScore(indictmentMap[visit.name].score)==0) { visit_badge = "badge bg-success"; }
-            vehicle_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="'+
-            'volume=' + visit.volume +
-            '<br>arrival=' + formatTime(visit.arrivalTime) +
-            '<br>undeliverd=' + visit.volumeUndelivered +
-            '<br>picked=' + visit.volumePicked +
+        getEntityPopoverContent(routeIndictmentId, indictmentMap) +
+        '" data-bs-original-title="' + '#' + step_counter + " " + routeIndictmentId + ' (' + next_step.isActive + ')' +'"><span class="'+ step_badge +'">'+
+            routeIndictmentId + ' (' + next_step.isActive + ')' +'</span></a>'));
+        next_step = solution.routeSteps.find((step) => step.id === next_step.nextStep);
+
+        if (next_step.id === 0) {
+            next_step = null;
+        }
+        step_counter++;
+    }
+    // solution.routeSteps.forEach((routeStep) => {
+    //     var next_step = routeSteps.find((step) => step.id === routeStep.nextStep);
+    //     var step_badge = "badge bg-danger";
+    //     var routeIndictmentId = 'RouteStep'+routeStep.id;
+    //     if (indictmentMap[routeIndictmentId]==null || getHardScore(indictmentMap[routeIndictmentId].score)==0) { step_badge = "badge bg-success"; }
+    //     if (!routeStep.isActive) { step_badge = "badge bg-secondary"; }
+    //     steps_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="' +
+    //     'startVertex=' + routeStep.startVertex + '</br>' +
+    //     'endVertex=' + routeStep.endVertex + '</br>' +
+    //     '<hr>' +
+    //     getEntityPopoverContent(routeIndictmentId, indictmentMap) +
+    //     '" data-bs-original-title="' + '#' + step_counter + " " + routeIndictmentId + ' (' + routeStep.isActive + ')' +'"><span class="'+ step_badge +'">'+
+    //         routeIndictmentId + ' (' + routeStep.isActive + ')' +'</span></a>'));
+    // })
+
+    const edges_div = $("#edges_container");
+    var edge_counter = 1;
+    solution.edgeList.forEach((edge) => {
+        var step_badge = "badge bg-danger";
+        var edgeIndictmentId = 'Edge'+edge.id;
+        if (indictmentMap[edgeIndictmentId]==null || getHardScore(indictmentMap[edgeIndictmentId].score)==0) { step_badge = "badge bg-success"; }
+        steps_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="' +
+            'startVertex=' + edge.start + '</br>' +
+            'endVertex=' + edge.edge + '</br>' +
+            'weight=' + edge.weight + '</br>' +
             '<hr>' +
-            getEntityPopoverContent(visit.name, indictmentMap) +
-            '" data-bs-original-title="'+
-            '#' + visit_nr + ' ' +visit.visitType + ' ' + visit.name+'"><span class="'+visit_badge+'">'+
-                    '#' + visit_nr + ' ' +visit.visitType + ' ' + visit.name + ' (' + visit.volume + ')' +'</span></a>'));
-
-            visit_nr = visit_nr + 1;
-        })
-        vehicle_div.append($('<br>'));
+            getEntityPopoverContent(edgeIndictmentId, indictmentMap) +
+            '" data-bs-original-title="' + '#' + edge_counter + " " + edgeIndictmentId +'"><span class="'+ step_badge +'">'+
+            edgeIndictmentId +'</span></a>'));
     })
-}
-
-function formatTime(timeInSeconds) {
-        if (timeInSeconds != null) {
-            const HH = Math.floor(timeInSeconds / 3600);
-            const MM = Math.floor((timeInSeconds % 3600) / 60);
-            const SS = Math.floor(timeInSeconds % 60);
-            return HH + ":" + MM + ":" + SS;
-        } else return "null";
 }
 
 
