@@ -5,8 +5,10 @@ import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 import ai.timefold.solver.core.api.score.constraint.Indictment;
 import ai.timefold.solver.core.api.solver.SolutionManager;
 import ai.timefold.solver.core.api.solver.SolverManager;
+import jakarta.annotation.PostConstruct;
 import my.combopt.solver.SimpleIndictmentObject;
 import my.combopt.domain.RouteSolution;
+import my.combopt.utils.ProblemGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,13 +64,13 @@ public class RoutingController {
                 }).collect(Collectors.toList());
     }
 //
-//    @PostConstruct
-//    public void init() {
-//        RoutingSolution problem50 = RoutingSolution.generateData(50);
+    @PostConstruct
+    public void init() {
+        ProblemGenerator problemGenerator = new ProblemGenerator();
+        RouteSolution problem1 = problemGenerator.getProblem1();
 //        ghRouter.setDistanceTimeMap(problem50.getLocationList());
-//        //solutionIOJSON.write(problem50, new File("data/exampleRiga50.json"));
-//        solverManager.solveAndListen(problem50.getSolutionId(), id -> problem50, solution -> {
-//            solutionMap.put(solution.getSolutionId(), solution);});
-//    }
-
+        //solutionIOJSON.write(problem50, new File("data/exampleRiga50.json"));
+        solverManager.solveAndListen(problem1.getSolutionId(), id -> problem1, solution -> {
+            solutionMap.put(solution.getSolutionId(), solution);});
+    }
 }

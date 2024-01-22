@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Pickup Delivery Optimization Service</title>
+    <title>Graph Traversal Optimization Service</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/webjars/leaflet/leaflet.css">
@@ -13,10 +13,15 @@
 <div class="container p-0 m-0">
     <h1><a id="score_a" data-toggle="popover"><span id="score_text"></span></a></h1>
 </div>
+<button id="play" class="btn btn-primary">Play</button>
+<label for="duration">Duration</label>
+<input id="duration" type="range" min="2000" max="50000" value="15000" class="slider" style="width: 300px">
+<p id="durationValue"></p>
 <div id="map" style="height: 750px;"></div>
 <script src="/webjars/leaflet/leaflet.js"></script>
 <script src="/webjars/jquery/jquery.min.js"></script>
 <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/leaflet.motion.min.js"></script>
 <script src="/route_leaflet.js"></script>
 </body>
 </html>

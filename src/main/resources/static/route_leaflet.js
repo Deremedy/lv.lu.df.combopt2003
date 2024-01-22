@@ -1,4 +1,4 @@
-var map = L.map('map').setView([56.9947, 24.0309], 11);
+var map = L.map('map').setView([56.958141067669146, 24.12462850613549], 14);
 var color_idx = 0;
 const colors = ["#f44336","#e81e63","#9c27b0","#673ab7","#3f51b5","#2196f3","#03a9f4","#00bcd4","#009688",
                                                 "#4caf50","#8bc34a","#cddc39","#ffeb3b","#ffc107","#ff9800","#ff5722"];
@@ -8,7 +8,7 @@ const vehicleIcon = L.divIcon({
     html: '<i class="fas fa-truck"></i>'
 });
 const pickupIcon = L.divIcon({
-    html: '<i class="fas fa-building"></i>'
+    html: '<i class="fas fa-2x fa-building"></i>'
 });
 const deliveryIcon = L.divIcon({
     html: '<i class="far fa-building"></i>'
@@ -29,6 +29,8 @@ const stockIcon_red = L.divIcon({
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const solutionId = urlParams.get('id');
+    var coordinates = [];
+    var motionObject = null;
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -49,41 +51,87 @@ $(document).ready(function () {
 
     $.getJSON("/routes/solution?id=" + solutionId, function(solution) {
             $.getJSON("/routes/indictments?id=" + solutionId, function(indictments) {
-                            renderRoutes(solution, indictments);
+                            coordinates = renderRoutes(solution, indictments);
                             $(function () {
                               $('[data-toggle="popover"]').popover()
                             })
             })
         });
+
+    // let playButton = $("#play");
+    // playButton.click(function () {
+    //     L.motion.polyline(coordinates, {
+    //         color: "indigo"
+    //     }, {
+    //         auto: true,
+    //         removeOnEnd: true,
+    //         duration: $("#duration").val(),
+    //     }, {
+    //         showMarker: true,
+    //         icon: vehicleIcon
+    //     }).addTo(map).motionToggle();
+    // });
+
+    let playButton = $("#play");
+    playButton.click(function () {
+        motionObject = L.motion.polyline(coordinates, {
+            color: "indigo"
+        }, {
+            auto: true,
+            removeOnEnd: true,
+            duration: $("#duration").val(),
+        }, {
+            showMarker: true,
+            icon: vehicleIcon
+        }).addTo(map);
+    });
+
+    $("#durationValue").text($("#duration").val()/1000 + ' seconds');
+    $("#duration").on("input", function () {
+        $("#durationValue").text($("#duration").val()/1000 + ' seconds');
+        if (motionObject != null) {
+            motionObject.motionDuration($("#duration").val());
+        }
+    })
 });
 
 function renderRoutes(solution, indictments) {
-    $("#solutionTitle").text("Version 04/Dec/2023 solutionId: " + solution.solutionId);
+    $("#solutionTitle").text("Version 22/Jan/2024 solutionId: " + solution.solutionId);
 
     var indictmentMap = {};
     indictments.forEach((indictment) => {
         indictmentMap[indictment.indictedObjectID] = indictment;
     })
 
-    solution.vehicleList.forEach((vehicle) => {
-        let previous_location = [vehicle.depot.lat, vehicle.depot.lon];
-        let nr = 1;
-        const vcolor = getColor();
-        const vmarker = L.marker(previous_location).addTo(map);
-        vmarker.setIcon(vehicleIcon);
-        vehicle.visits.forEach((visit) => {
-            const location = [visit.location.lat, visit.location.lon];
-            const marker = L.marker(location).addTo(map);
-            marker.setIcon(getVisitIcon(visit.visitType, indictmentMap[visit.name]));
-            marker.bindPopup("<b>#"+nr+"</b><br>id="+visit.name+"<br>"+visit.visitType+"<br>"+visit.volume + "<br>arrival="
-            + formatTime(visit.arrivalTime) + "<br>undeliverd=" + visit.volumeUndelivered +                                                                                                   '<br>picked=' + visit.volumePicked +
-            "<hr>" + getEntityPopoverContent(visit.name, indictmentMap));
-            const line = L.polyline([previous_location, location], {color: vcolor}).addTo(map);
-            previous_location = location;
-            nr = nr + 1;
-        });
-        const line_back = L.polyline([previous_location, [vehicle.depot.lat, vehicle.depot.lon]],{color: vcolor}).addTo(map);
-    });
+    var step_counter = 1;
+    var routeStartStep = solution.routeSteps.find((step) => step.id === 0);
+    let next_step = routeStartStep;
+    let coordinates = [];
+
+    let startVertex = solution.vertexList.find((vertex) => vertex.id === next_step.startVertex);
+    const vmarker = L.marker([startVertex.lat, startVertex.lon]).addTo(map);
+    vmarker.setIcon(pickupIcon);
+
+    while (next_step) {
+        let startVertex = solution.vertexList.find((vertex) => vertex.id === next_step.startVertex);
+        let endVertex = solution.vertexList.find((vertex) => vertex.id === next_step.endVertex);
+        let startLocation = [startVertex.lat, startVertex.lon];
+        let endLocation = [endVertex.lat, endVertex.lon];
+        coordinates.push(startLocation);
+
+        // const vmarker = L.marker(startLocation).addTo(map);
+        // vmarker.setIcon(vehicleIcon);
+        // const vcolor = getColor();
+        // L.polyline([startLocation, endLocation], {color: vcolor}).addTo(map);
+
+        next_step = solution.routeSteps.find((step) => step.id === next_step.nextStep);
+        if (next_step.id === 0) {
+            next_step = null;
+        }
+        step_counter++;
+    }
+
+    return coordinates;
 }
 
 function getEntityPopoverContent(entityId, indictmentMap) {
@@ -108,7 +156,6 @@ function getVisitIcon(v_type, indictment) {
     } else {
         return v_type == "STOCK" ? stockIcon_red : v_type == "PICKUP" ? pickupIcon_red : deliveryIcon_red;
     }
-
 }
 
 function getColor() {
