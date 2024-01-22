@@ -21,7 +21,7 @@ public class Main {
     private static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
     public static void main(String[] args) {
         ProblemGenerator problemGenerator = new ProblemGenerator();
-        RouteSolution problem = problemGenerator.getProblem1();
+        RouteSolution problem = problemGenerator.generateSimpleProblem();
 //        RouteSolution problem = problemGenerator.generateProblem();
         problem.print();
 

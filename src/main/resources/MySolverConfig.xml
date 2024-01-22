@@ -13,7 +13,7 @@
 
     <!-- Configure the optimization algorithms (optional) -->
     <termination>
-        <secondsSpentLimit>3</secondsSpentLimit>
+        <secondsSpentLimit>10</secondsSpentLimit>
     </termination>
 
     <constructionHeuristic />
@@ -23,9 +23,14 @@
             <changeMoveSelector>
                 <valueSelector variableName="isActive"/>
             </changeMoveSelector>
+
+            <changeMoveSelector>
+                <valueSelector variableName="nextStep"/>
+            </changeMoveSelector>
+
             <swapMoveSelector>
                 <variableNameIncludes>
-                    <variableNameInclude>isActive</variableNameInclude>
+                    <variableNameInclude>nextStep</variableNameInclude>
                 </variableNameIncludes>
             </swapMoveSelector>
 

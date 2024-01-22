@@ -16,10 +16,10 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
         return new Constraint[] {
             minimizeActiveStepCount(constraintFactory),
             visitedAllEdges(constraintFactory),
-//            stepsAreChained(constraintFactory),
+            stepsAreChainedV2(constraintFactory),
             minimizeTotalWeight(constraintFactory),
-            invalidEdgePenalty(constraintFactory),
-//            routeIsACycle(constraintFactory)
+//            invalidEdgePenalty(constraintFactory),
+            routeIsACycle(constraintFactory)
         };
     }
 
@@ -42,7 +42,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                 .asConstraint("visitedAllEdges");
     }
 
-    public Constraint stepsAreChained(ConstraintFactory constraintFactory) {
+    public Constraint stepsAreChainedV2(ConstraintFactory constraintFactory) {
         return constraintFactory
                 .forEach(RouteStep.class)
                 .filter(RouteStep::getIsActive)  // Only consider active steps
@@ -60,24 +60,23 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                 .asConstraint("stepsAreChained");
     }
 
-//    public Constraint stepsAreChained(ConstraintFactory constraintFactory) {
-//        return constraintFactory
-//                .forEach(RouteStep.class)
-//                .filter(RouteStep::getIsActive)  // Only consider active steps
-//                .join(RouteStep.class,
-//                        Joiners.filtering((step1, step2) -> step2.getIsActive()),  // Join with next active step
-//                        Joiners.filtering((step1, step2) -> {
-//                            RouteStep nextActiveStep = step1.getNextStep();
-//                            while (nextActiveStep != null && !nextActiveStep.getIsActive()) {
-//                                nextActiveStep = nextActiveStep.getNextStep();
-//                            }
-//                            return nextActiveStep == step2;  // Find the next active step in the chain
-//                        }))
-//                .penalize(HardSoftScore.ONE_HARD, (step1, step2) ->
-//                        !Objects.equals(step1.getEndVertex(), step2.getStartVertex()) ? 1 : 0)
-//                .asConstraint("stepsAreChained");
-//    }
-
+    public Constraint stepsAreChainedV1(ConstraintFactory constraintFactory) {
+        return constraintFactory
+                .forEach(RouteStep.class)
+                .filter(RouteStep::getIsActive)  // Only consider active steps
+                .join(RouteStep.class,
+                        Joiners.filtering((step1, step2) -> step2.getIsActive()),  // Join with next active step
+                        Joiners.filtering((step1, step2) -> {
+                            RouteStep nextActiveStep = step1.getNextStep();
+                            while (nextActiveStep != null && !nextActiveStep.getIsActive()) {
+                                nextActiveStep = nextActiveStep.getNextStep();
+                            }
+                            return nextActiveStep == step2;  // Find the next active step in the chain
+                        }))
+                .penalize(HardSoftScore.ONE_HARD, (step1, step2) ->
+                        !Objects.equals(step1.getEndVertex(), step2.getStartVertex()) ? 1 : 0)
+                .asConstraint("stepsAreChained");
+    }
 
     public Constraint minimizeTotalWeight(ConstraintFactory constraintFactory) {
         return constraintFactory
