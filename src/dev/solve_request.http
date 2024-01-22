@@ -1,4 +1,4 @@
 POST http://localhost:8080/routes/solve
 Content-Type: application/json
 
-< tf_problem118_500.json
+< ../../data/tf_problem118_500.json

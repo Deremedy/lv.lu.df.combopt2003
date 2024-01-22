@@ -5,10 +5,7 @@ import ai.timefold.solver.core.api.score.buildin.hardsoft.HardSoftScore;
 import ai.timefold.solver.core.api.score.constraint.Indictment;
 import ai.timefold.solver.core.api.solver.SolutionManager;
 import ai.timefold.solver.core.api.solver.SolverManager;
-import jakarta.annotation.PostConstruct;
-import lv.lu.df.combopt.domain.Router;
-import lv.lu.df.combopt.domain.RoutingSolution;
-import lv.lu.df.combopt.solver.SimpleIndictmentObject;
+import my.combopt.solver.SimpleIndictmentObject;
 import my.combopt.domain.RouteSolution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,24 +43,24 @@ public class RoutingController {
     public List<RouteSolution> list() {
         return solutionMap.values().stream().toList();
     }
+
+    @GetMapping("/score")
+    public ScoreAnalysis<HardSoftScore> score(@RequestParam String id) {
+        return solutionManager.analyze(solutionMap.get(id));
+    }
 //
-//    @GetMapping("/score")
-//    public ScoreAnalysis<HardSoftScore> score(@RequestParam String id) {
-//        return solutionManager.analyze(solutionMap.get(id));
-//    }
-//
-//    @GetMapping("/indictments")
-//    public List<SimpleIndictmentObject> indictments(@RequestParam String id) {
-//        return solutionManager.explain(solutionMap.getOrDefault(id, null)).getIndictmentMap().entrySet().stream()
-//                .map(entry -> {
-//                    Indictment<HardSoftScore> indictment = entry.getValue();
-//                    return
-//                            new SimpleIndictmentObject(entry.getKey(), // indicted Object
-//                                    indictment.getScore(),
-//                                    indictment.getConstraintMatchCount(),
-//                                    indictment.getConstraintMatchSet());
-//                }).collect(Collectors.toList());
-//    }
+    @GetMapping("/indictments")
+    public List<SimpleIndictmentObject> indictments(@RequestParam String id) {
+        return solutionManager.explain(solutionMap.getOrDefault(id, null)).getIndictmentMap().entrySet().stream()
+                .map(entry -> {
+                    Indictment<HardSoftScore> indictment = entry.getValue();
+                    return
+                            new SimpleIndictmentObject(entry.getKey(), // indicted Object
+                                    indictment.getScore(),
+                                    indictment.getConstraintMatchCount(),
+                                    indictment.getConstraintMatchSet());
+                }).collect(Collectors.toList());
+    }
 //
 //    @PostConstruct
 //    public void init() {
