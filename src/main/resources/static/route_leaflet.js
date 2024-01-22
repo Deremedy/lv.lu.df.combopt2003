@@ -34,6 +34,7 @@ $(document).ready(function () {
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
+        opacity: 0.6,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
@@ -103,6 +104,15 @@ function renderRoutes(solution, indictments) {
         indictmentMap[indictment.indictedObjectID] = indictment;
     })
 
+    // Render edges to traverse
+    solution.edgeList.forEach((edge) => {
+        let startVertex = solution.vertexList.find((vertex) => vertex.id === edge.start);
+        let endVertex = solution.vertexList.find((vertex) => vertex.id === edge.end);
+        let startLocation = [startVertex.lat, startVertex.lon];
+        let endLocation = [endVertex.lat, endVertex.lon];
+        L.polyline([startLocation, endLocation], {color: 'red'}).addTo(map);
+    });
+
     var step_counter = 1;
     var routeStartStep = solution.routeSteps.find((step) => step.id === 0);
     let next_step = routeStartStep;
@@ -113,11 +123,13 @@ function renderRoutes(solution, indictments) {
     vmarker.setIcon(pickupIcon);
 
     while (next_step) {
-        let startVertex = solution.vertexList.find((vertex) => vertex.id === next_step.startVertex);
-        let endVertex = solution.vertexList.find((vertex) => vertex.id === next_step.endVertex);
-        let startLocation = [startVertex.lat, startVertex.lon];
-        let endLocation = [endVertex.lat, endVertex.lon];
-        coordinates.push(startLocation);
+        if (next_step.isActive) {
+            let startVertex = solution.vertexList.find((vertex) => vertex.id === next_step.startVertex);
+            let endVertex = solution.vertexList.find((vertex) => vertex.id === next_step.endVertex);
+            let startLocation = [startVertex.lat, startVertex.lon];
+            let endLocation = [endVertex.lat, endVertex.lon];
+            coordinates.push(startLocation);
+        }
 
         // const vmarker = L.marker(startLocation).addTo(map);
         // vmarker.setIcon(vehicleIcon);
