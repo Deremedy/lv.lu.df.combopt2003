@@ -127,7 +127,7 @@ public class ProblemGenerator {
         RouteSolution problem = generateProblemFromJson("data/problems/problem14_200.json");
         problem.setSolutionId("P1");
 
-        problem.setStartVertex(problem.getVertexList().get(0));
+        problem.setStartVertex(problem.getVertexList().get(1));
 
         List<RouteStep> routeSteps = generateRouteSteps(problem);
         problem.setRouteSteps(routeSteps);

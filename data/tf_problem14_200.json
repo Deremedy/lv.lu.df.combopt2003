@@ -123,7 +123,7 @@
     "end" : 26639009,
     "weight" : 130.0
   } ],
-  "startVertex" : 26609175,
+  "startVertex" : 26695910,
   "adjacencyListWithWeights" : {
     "26695910" : [ {
       "vertex" : 26695897,
@@ -178,12 +178,246 @@
   },
   "routeSteps" : [ {
     "id" : 0,
-    "startVertex" : 26609175,
-    "endVertex" : 26609175,
-    "prevStep" : 0,
-    "nextStep" : 0,
+    "startVertex" : 26695910,
+    "endVertex" : 26695910,
+    "prevStep" : 26,
+    "nextStep" : 1,
     "anchor" : null,
     "isActive" : true,
     "start" : true
+  }, {
+    "id" : 1,
+    "startVertex" : 26695910,
+    "endVertex" : 26695897,
+    "prevStep" : 0,
+    "nextStep" : 2,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 2,
+    "startVertex" : 26695897,
+    "endVertex" : 26609136,
+    "prevStep" : 1,
+    "nextStep" : 3,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 3,
+    "startVertex" : 26609136,
+    "endVertex" : 26609133,
+    "prevStep" : 2,
+    "nextStep" : 4,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 4,
+    "startVertex" : 26609133,
+    "endVertex" : 26609175,
+    "prevStep" : 3,
+    "nextStep" : 5,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 5,
+    "startVertex" : 26609175,
+    "endVertex" : 26609133,
+    "prevStep" : 4,
+    "nextStep" : 6,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 6,
+    "startVertex" : 26609133,
+    "endVertex" : 26609129,
+    "prevStep" : 5,
+    "nextStep" : 7,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 7,
+    "startVertex" : 26609129,
+    "endVertex" : 26639009,
+    "prevStep" : 6,
+    "nextStep" : 8,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 8,
+    "startVertex" : 26639009,
+    "endVertex" : 26609129,
+    "prevStep" : 7,
+    "nextStep" : 9,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 9,
+    "startVertex" : 26609129,
+    "endVertex" : 26609133,
+    "prevStep" : 8,
+    "nextStep" : 10,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 10,
+    "startVertex" : 26609133,
+    "endVertex" : 26609129,
+    "prevStep" : 9,
+    "nextStep" : 11,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 11,
+    "startVertex" : 26609129,
+    "endVertex" : 26609133,
+    "prevStep" : 10,
+    "nextStep" : 12,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 12,
+    "startVertex" : 26609133,
+    "endVertex" : 26609136,
+    "prevStep" : 11,
+    "nextStep" : 13,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 13,
+    "startVertex" : 26609136,
+    "endVertex" : 26609133,
+    "prevStep" : 12,
+    "nextStep" : 14,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 14,
+    "startVertex" : 26609133,
+    "endVertex" : 26609136,
+    "prevStep" : 13,
+    "nextStep" : 15,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 15,
+    "startVertex" : 26609136,
+    "endVertex" : 26695897,
+    "prevStep" : 14,
+    "nextStep" : 16,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 16,
+    "startVertex" : 26695897,
+    "endVertex" : 26609136,
+    "prevStep" : 15,
+    "nextStep" : 17,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 17,
+    "startVertex" : 26609136,
+    "endVertex" : 26695897,
+    "prevStep" : 16,
+    "nextStep" : 18,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 18,
+    "startVertex" : 26695897,
+    "endVertex" : 26695900,
+    "prevStep" : 17,
+    "nextStep" : 19,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 19,
+    "startVertex" : 26695900,
+    "endVertex" : 34639066,
+    "prevStep" : 18,
+    "nextStep" : 20,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 20,
+    "startVertex" : 34639066,
+    "endVertex" : 26609133,
+    "prevStep" : 19,
+    "nextStep" : 21,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 21,
+    "startVertex" : 26609133,
+    "endVertex" : 34639066,
+    "prevStep" : 20,
+    "nextStep" : 22,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 22,
+    "startVertex" : 34639066,
+    "endVertex" : 26639009,
+    "prevStep" : 21,
+    "nextStep" : 23,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 23,
+    "startVertex" : 26639009,
+    "endVertex" : 34639066,
+    "prevStep" : 22,
+    "nextStep" : 24,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 24,
+    "startVertex" : 34639066,
+    "endVertex" : 26695900,
+    "prevStep" : 23,
+    "nextStep" : 25,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 25,
+    "startVertex" : 26695900,
+    "endVertex" : 26695897,
+    "prevStep" : 24,
+    "nextStep" : 26,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 26,
+    "startVertex" : 26695897,
+    "endVertex" : 26695910,
+    "prevStep" : 25,
+    "nextStep" : 0,
+    "anchor" : 0,
+    "isActive" : true,
+    "start" : false
   } ]
 }

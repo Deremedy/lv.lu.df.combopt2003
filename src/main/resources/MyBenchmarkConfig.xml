@@ -25,10 +25,11 @@
        <problemBenchmarks>
             <solutionFileIOClass>my.combopt.domain.RouteSolutionJsonIO</solutionFileIOClass>
             <writeOutputSolutionEnabled>true</writeOutputSolutionEnabled>
+            <inputSolutionFile>data/tf_problem14_200.json</inputSolutionFile>
+            <inputSolutionFile>data/tf_problem52_300.json</inputSolutionFile>
             <inputSolutionFile>data/tf_problem118_500.json</inputSolutionFile>
-            <!--<inputSolutionFile>data/example50.json</inputSolutionFile>
-            <inputSolutionFile>data/example100.json</inputSolutionFile>
-             <inputSolutionFile>data/example150.json</inputSolutionFile>-->
+            <inputSolutionFile>data/tf_problem173_600.json</inputSolutionFile>
+            <inputSolutionFile>data/tf_problem293_800.json</inputSolutionFile>
         </problemBenchmarks>
         <!--<subSingleCount>5</subSingleCount>-->
     </inheritedSolverBenchmark>
