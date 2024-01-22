@@ -67,7 +67,7 @@ function renderRoutes(solution, indictments) {
     var step_counter = 1;
     var is_route_step = true;
     // Get first step in the route
-    var routeStartStep = solution.routeSteps.find((step) => step.id === 0);
+    var routeStartStep = solution.routeSteps.find((step) => step.start);
     let next_step = routeStartStep;
 
     while (next_step) {
@@ -76,6 +76,7 @@ function renderRoutes(solution, indictments) {
         if (indictmentMap[routeIndictmentId]==null || getHardScore(indictmentMap[routeIndictmentId].score)==0) { step_badge = "badge bg-success"; }
         if (!next_step.isActive) { step_badge = "badge bg-secondary"; }
         steps_div.append($('<a data-toggle="popover" data-bs-html="true" data-bs-content="' +
+        'nextStep=' + next_step.nextStep + '</br>' +
         'startVertex=' + next_step.startVertex + '</br>' +
         'endVertex=' + next_step.endVertex + '</br>' +
         '<hr>' +
@@ -84,7 +85,7 @@ function renderRoutes(solution, indictments) {
             routeIndictmentId + ' (' + next_step.isActive + ')' +'</span></a>'));
         next_step = solution.routeSteps.find((step) => step.id === next_step.nextStep);
 
-        if (next_step.id === 0) {
+        if (next_step.start) {
             next_step = null;
         }
         step_counter++;

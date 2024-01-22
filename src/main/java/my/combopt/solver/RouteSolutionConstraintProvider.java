@@ -18,8 +18,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
             visitedAllEdges(constraintFactory),
             stepsAreChainedV2(constraintFactory),
             minimizeTotalWeight(constraintFactory),
-//            invalidEdgePenalty(constraintFactory),
-            routeIsACycle(constraintFactory)
+            startingVertexShouldBeUsedOnlyOnce(constraintFactory),
         };
     }
 
@@ -38,7 +37,7 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                         Joiners.equal(Edge::getStart, RouteStep::getStartVertex),
                         Joiners.equal(Edge::getEnd, RouteStep::getEndVertex),
                         Joiners.filtering((edge, routeStep) -> routeStep.getIsActive()))
-                .penalize(HardSoftScore.ONE_HARD)
+                .penalize(HardSoftScore.ONE_SOFT, (routeStep) -> 10000)
                 .asConstraint("visitedAllEdges");
     }
 
@@ -89,26 +88,15 @@ public class RouteSolutionConstraintProvider implements ConstraintProvider {
                         (int)edge.getWeight())
                 .asConstraint("minimizeTotalWeight");
     }
-    public Constraint invalidEdgePenalty(ConstraintFactory constraintFactory) {
-        return constraintFactory
-                .forEach(RouteStep.class)
-                .filter(RouteStep::getIsActive)
-                .filter(routeStep -> !routeStep.getStartVertex().getNeighbours().contains(routeStep.getEndVertex().getId()))
-                .filter(routeStep -> !routeStep.isStart())
-                .penalize(HardSoftScore.ONE_HARD)
-                .asConstraint("nonAdjacentPenalty");
-    }
 
-    private Constraint routeIsACycle(ConstraintFactory constraintFactory) {
+    private Constraint startingVertexShouldBeUsedOnlyOnce(ConstraintFactory constraintFactory) {
         // Route starts with the same vertex as it ends
         return constraintFactory
                 .forEach(RouteStep.class)
-                .filter(RouteStep::getIsActive)
+                .filter(RouteStep::isStart)
                 .join(RouteStep.class,
-                        Joiners.filtering((step1, step2) -> step2.getIsActive() && (step1.getPrevStep() == null || !step1.getPrevStep().getIsActive())),
-                        Joiners.filtering((step1, step2) -> step2.getIsActive() && (step2.getNextStep() == null || !step2.getNextStep().getIsActive())))
-                .penalize(HardSoftScore.ONE_HARD,
-                        (firstStep, lastStep) -> firstStep.getStartVertex().equals(lastStep.getEndVertex()) ? 0 : 1)
-                .asConstraint("startAndEndAtSameVertex");
+                        Joiners.filtering((step1, step2) -> Objects.equals(step1, step2.getNextStep())))
+                .penalize(HardSoftScore.ONE_HARD)
+                .asConstraint("startingVertexShouldBeUsedOnlyOnce");
     }
 }
