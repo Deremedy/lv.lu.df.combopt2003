@@ -1,0 +1,1617 @@
+{
+  "solutionId" : "P2",
+  "score" : null,
+  "vertexList" : [ {
+    "id" : 26695895,
+    "neighbours" : [ 27023894, 26695910 ],
+    "lat" : 56.9581724,
+    "lon" : 24.121275
+  }, {
+    "id" : 26609175,
+    "neighbours" : [ 31200174, 27023890 ],
+    "lat" : 56.9566945,
+    "lon" : 24.1276191
+  }, {
+    "id" : 678874676,
+    "neighbours" : [ 26678576, 5134398652 ],
+    "lat" : 56.959747,
+    "lon" : 24.1289883
+  }, {
+    "id" : 26695890,
+    "neighbours" : [ 26609164, 26695910 ],
+    "lat" : 56.9570465,
+    "lon" : 24.1199956
+  }, {
+    "id" : 27023892,
+    "neighbours" : [ 34639066, 27023894 ],
+    "lat" : 56.9595371,
+    "lon" : 24.1218157
+  }, {
+    "id" : 34639066,
+    "neighbours" : [ 26609133, 26639009 ],
+    "lat" : 56.9588636,
+    "lon" : 24.1231777
+  }, {
+    "id" : 27023894,
+    "neighbours" : [ 26695895 ],
+    "lat" : 56.9586743,
+    "lon" : 24.1203207
+  }, {
+    "id" : 26695900,
+    "neighbours" : [ 34639066, 26695895 ],
+    "lat" : 56.9581293,
+    "lon" : 24.1219254
+  }, {
+    "id" : 26695897,
+    "neighbours" : [ 26609136, 26695900 ],
+    "lat" : 56.9577176,
+    "lon" : 24.1221019
+  }, {
+    "id" : 27023890,
+    "neighbours" : [ 26609175, 26609129 ],
+    "lat" : 56.9574045,
+    "lon" : 24.1293495
+  }, {
+    "id" : 27023891,
+    "neighbours" : [ 27023892 ],
+    "lat" : 56.9606468,
+    "lon" : 24.1237458
+  }, {
+    "id" : 409108466,
+    "neighbours" : [ 31200174, 26695911 ],
+    "lat" : 56.9560679,
+    "lon" : 24.1262637
+  }, {
+    "id" : 26609164,
+    "neighbours" : [ 26609136, 26695890, 29029083, 31200176 ],
+    "lat" : 56.9563357,
+    "lon" : 24.1213566
+  }, {
+    "id" : 29029083,
+    "neighbours" : [ 26609164 ],
+    "lat" : 56.9560575,
+    "lon" : 24.1208788
+  }, {
+    "id" : 26609136,
+    "neighbours" : [ 26695897, 26609133, 31200173, 26609164 ],
+    "lat" : 56.9572583,
+    "lon" : 24.1229702
+  }, {
+    "id" : 26678576,
+    "neighbours" : [ 26609129, 678874676 ],
+    "lat" : 56.9596835,
+    "lon" : 24.1287178
+  }, {
+    "id" : 31200176,
+    "neighbours" : [ 31200173, 26609164 ],
+    "lat" : 56.9555154,
+    "lon" : 24.1229391
+  }, {
+    "id" : 26695911,
+    "neighbours" : [ 31200173, 409108466 ],
+    "lat" : 56.9557713,
+    "lon" : 24.1256301
+  }, {
+    "id" : 31200173,
+    "neighbours" : [ 31200174, 26695911, 26609136 ],
+    "lat" : 56.9563093,
+    "lon" : 24.124663
+  }, {
+    "id" : 26695910,
+    "neighbours" : [ 26695897 ],
+    "lat" : 56.9578161,
+    "lon" : 24.1213425
+  }, {
+    "id" : 31200174,
+    "neighbours" : [ 409108466, 26609175 ],
+    "lat" : 56.9561495,
+    "lon" : 24.1264378
+  }, {
+    "id" : 5134398652,
+    "neighbours" : [ 678874676 ],
+    "lat" : 56.9607722,
+    "lon" : 24.1295748
+  }, {
+    "id" : 26639009,
+    "neighbours" : [ 27023891 ],
+    "lat" : 56.9598717,
+    "lon" : 24.1249182
+  }, {
+    "id" : 26609133,
+    "neighbours" : [ 26609136, 26609175, 26609129 ],
+    "lat" : 56.9581745,
+    "lon" : 24.1245607
+  }, {
+    "id" : 26609130,
+    "neighbours" : [ 27023892 ],
+    "lat" : 56.9602354,
+    "lon" : 24.1204234
+  }, {
+    "id" : 26609129,
+    "neighbours" : [ 26609133, 26639009, 26678576 ],
+    "lat" : 56.9589767,
+    "lon" : 24.126296
+  } ],
+  "edgeList" : [ {
+    "id" : 1,
+    "start" : 26695895,
+    "end" : 27023894,
+    "weight" : 80.0
+  }, {
+    "id" : 2,
+    "start" : 26695895,
+    "end" : 26695910,
+    "weight" : 46.0
+  }, {
+    "id" : 3,
+    "start" : 26609175,
+    "end" : 31200174,
+    "weight" : 94.0
+  }, {
+    "id" : 4,
+    "start" : 26609175,
+    "end" : 27023890,
+    "weight" : 131.0
+  }, {
+    "id" : 5,
+    "start" : 678874676,
+    "end" : 26678576,
+    "weight" : 18.0
+  }, {
+    "id" : 6,
+    "start" : 678874676,
+    "end" : 5134398652,
+    "weight" : 120.0
+  }, {
+    "id" : 7,
+    "start" : 26695890,
+    "end" : 26609164,
+    "weight" : 114.0
+  }, {
+    "id" : 8,
+    "start" : 26695890,
+    "end" : 26695910,
+    "weight" : 118.0
+  }, {
+    "id" : 9,
+    "start" : 27023892,
+    "end" : 34639066,
+    "weight" : 111.0
+  }, {
+    "id" : 10,
+    "start" : 27023892,
+    "end" : 27023894,
+    "weight" : 132.0
+  }, {
+    "id" : 11,
+    "start" : 34639066,
+    "end" : 26609133,
+    "weight" : 114.0
+  }, {
+    "id" : 12,
+    "start" : 34639066,
+    "end" : 26639009,
+    "weight" : 154.0
+  }, {
+    "id" : 13,
+    "start" : 27023894,
+    "end" : 26695895,
+    "weight" : 80.0
+  }, {
+    "id" : 14,
+    "start" : 26695900,
+    "end" : 34639066,
+    "weight" : 112.0
+  }, {
+    "id" : 15,
+    "start" : 26695900,
+    "end" : 26695895,
+    "weight" : 44.0
+  }, {
+    "id" : 16,
+    "start" : 26695897,
+    "end" : 26609136,
+    "weight" : 73.0
+  }, {
+    "id" : 17,
+    "start" : 26695897,
+    "end" : 26695900,
+    "weight" : 55.0
+  }, {
+    "id" : 18,
+    "start" : 27023890,
+    "end" : 26609175,
+    "weight" : 131.0
+  }, {
+    "id" : 19,
+    "start" : 27023890,
+    "end" : 26609129,
+    "weight" : 255.0
+  }, {
+    "id" : 20,
+    "start" : 27023891,
+    "end" : 27023892,
+    "weight" : 170.0
+  }, {
+    "id" : 21,
+    "start" : 409108466,
+    "end" : 31200174,
+    "weight" : 14.0
+  }, {
+    "id" : 22,
+    "start" : 409108466,
+    "end" : 26695911,
+    "weight" : 51.0
+  }, {
+    "id" : 23,
+    "start" : 26609164,
+    "end" : 26609136,
+    "weight" : 142.0
+  }, {
+    "id" : 24,
+    "start" : 26609164,
+    "end" : 26695890,
+    "weight" : 114.0
+  }, {
+    "id" : 25,
+    "start" : 26609164,
+    "end" : 29029083,
+    "weight" : 42.0
+  }, {
+    "id" : 26,
+    "start" : 26609164,
+    "end" : 31200176,
+    "weight" : 132.0
+  }, {
+    "id" : 27,
+    "start" : 29029083,
+    "end" : 26609164,
+    "weight" : 42.0
+  }, {
+    "id" : 28,
+    "start" : 26609136,
+    "end" : 26695897,
+    "weight" : 73.0
+  }, {
+    "id" : 29,
+    "start" : 26609136,
+    "end" : 26609133,
+    "weight" : 140.0
+  }, {
+    "id" : 30,
+    "start" : 26609136,
+    "end" : 31200173,
+    "weight" : 147.0
+  }, {
+    "id" : 31,
+    "start" : 26609136,
+    "end" : 26609164,
+    "weight" : 142.0
+  }, {
+    "id" : 32,
+    "start" : 26678576,
+    "end" : 26609129,
+    "weight" : 167.0
+  }, {
+    "id" : 33,
+    "start" : 26678576,
+    "end" : 678874676,
+    "weight" : 18.0
+  }, {
+    "id" : 34,
+    "start" : 31200176,
+    "end" : 31200173,
+    "weight" : 137.0
+  }, {
+    "id" : 35,
+    "start" : 31200176,
+    "end" : 26609164,
+    "weight" : 132.0
+  }, {
+    "id" : 36,
+    "start" : 26695911,
+    "end" : 31200173,
+    "weight" : 84.0
+  }, {
+    "id" : 37,
+    "start" : 26695911,
+    "end" : 409108466,
+    "weight" : 51.0
+  }, {
+    "id" : 38,
+    "start" : 31200173,
+    "end" : 31200174,
+    "weight" : 168.0
+  }, {
+    "id" : 39,
+    "start" : 31200173,
+    "end" : 26695911,
+    "weight" : 84.0
+  }, {
+    "id" : 40,
+    "start" : 31200173,
+    "end" : 26609136,
+    "weight" : 147.0
+  }, {
+    "id" : 41,
+    "start" : 26695910,
+    "end" : 26695897,
+    "weight" : 55.0
+  }, {
+    "id" : 42,
+    "start" : 31200174,
+    "end" : 409108466,
+    "weight" : 14.0
+  }, {
+    "id" : 43,
+    "start" : 31200174,
+    "end" : 26609175,
+    "weight" : 94.0
+  }, {
+    "id" : 44,
+    "start" : 5134398652,
+    "end" : 678874676,
+    "weight" : 120.0
+  }, {
+    "id" : 45,
+    "start" : 26639009,
+    "end" : 27023891,
+    "weight" : 112.0
+  }, {
+    "id" : 46,
+    "start" : 26609133,
+    "end" : 26609136,
+    "weight" : 140.0
+  }, {
+    "id" : 47,
+    "start" : 26609133,
+    "end" : 26609175,
+    "weight" : 248.0
+  }, {
+    "id" : 48,
+    "start" : 26609133,
+    "end" : 26609129,
+    "weight" : 139.0
+  }, {
+    "id" : 49,
+    "start" : 26609130,
+    "end" : 27023892,
+    "weight" : 115.0
+  }, {
+    "id" : 50,
+    "start" : 26609129,
+    "end" : 26609133,
+    "weight" : 139.0
+  }, {
+    "id" : 51,
+    "start" : 26609129,
+    "end" : 26639009,
+    "weight" : 130.0
+  }, {
+    "id" : 52,
+    "start" : 26609129,
+    "end" : 26678576,
+    "weight" : 167.0
+  } ],
+  "startVertex" : 26695895,
+  "adjacencyListWithWeights" : {
+    "26695895" : [ {
+      "vertex" : 27023894,
+      "weight" : 80.0
+    }, {
+      "vertex" : 26695910,
+      "weight" : 46.0
+    } ],
+    "26609175" : [ {
+      "vertex" : 31200174,
+      "weight" : 94.0
+    }, {
+      "vertex" : 27023890,
+      "weight" : 131.0
+    } ],
+    "678874676" : [ {
+      "vertex" : 26678576,
+      "weight" : 18.0
+    }, {
+      "vertex" : 5134398652,
+      "weight" : 120.0
+    } ],
+    "26695890" : [ {
+      "vertex" : 26609164,
+      "weight" : 114.0
+    }, {
+      "vertex" : 26695910,
+      "weight" : 118.0
+    } ],
+    "27023892" : [ {
+      "vertex" : 34639066,
+      "weight" : 111.0
+    }, {
+      "vertex" : 27023894,
+      "weight" : 132.0
+    } ],
+    "34639066" : [ {
+      "vertex" : 26609133,
+      "weight" : 114.0
+    }, {
+      "vertex" : 26639009,
+      "weight" : 154.0
+    } ],
+    "27023894" : [ {
+      "vertex" : 26695895,
+      "weight" : 80.0
+    } ],
+    "26695900" : [ {
+      "vertex" : 34639066,
+      "weight" : 112.0
+    }, {
+      "vertex" : 26695895,
+      "weight" : 44.0
+    } ],
+    "26695897" : [ {
+      "vertex" : 26609136,
+      "weight" : 73.0
+    }, {
+      "vertex" : 26695900,
+      "weight" : 55.0
+    } ],
+    "27023890" : [ {
+      "vertex" : 26609175,
+      "weight" : 131.0
+    }, {
+      "vertex" : 26609129,
+      "weight" : 255.0
+    } ],
+    "27023891" : [ {
+      "vertex" : 27023892,
+      "weight" : 170.0
+    } ],
+    "409108466" : [ {
+      "vertex" : 31200174,
+      "weight" : 14.0
+    }, {
+      "vertex" : 26695911,
+      "weight" : 51.0
+    } ],
+    "26609164" : [ {
+      "vertex" : 26609136,
+      "weight" : 142.0
+    }, {
+      "vertex" : 26695890,
+      "weight" : 114.0
+    }, {
+      "vertex" : 29029083,
+      "weight" : 42.0
+    }, {
+      "vertex" : 31200176,
+      "weight" : 132.0
+    } ],
+    "29029083" : [ {
+      "vertex" : 26609164,
+      "weight" : 42.0
+    } ],
+    "26609136" : [ {
+      "vertex" : 26695897,
+      "weight" : 73.0
+    }, {
+      "vertex" : 26609133,
+      "weight" : 140.0
+    }, {
+      "vertex" : 31200173,
+      "weight" : 147.0
+    }, {
+      "vertex" : 26609164,
+      "weight" : 142.0
+    } ],
+    "26678576" : [ {
+      "vertex" : 26609129,
+      "weight" : 167.0
+    }, {
+      "vertex" : 678874676,
+      "weight" : 18.0
+    } ],
+    "31200176" : [ {
+      "vertex" : 31200173,
+      "weight" : 137.0
+    }, {
+      "vertex" : 26609164,
+      "weight" : 132.0
+    } ],
+    "26695911" : [ {
+      "vertex" : 31200173,
+      "weight" : 84.0
+    }, {
+      "vertex" : 409108466,
+      "weight" : 51.0
+    } ],
+    "31200173" : [ {
+      "vertex" : 31200174,
+      "weight" : 168.0
+    }, {
+      "vertex" : 26695911,
+      "weight" : 84.0
+    }, {
+      "vertex" : 26609136,
+      "weight" : 147.0
+    } ],
+    "26695910" : [ {
+      "vertex" : 26695897,
+      "weight" : 55.0
+    } ],
+    "31200174" : [ {
+      "vertex" : 409108466,
+      "weight" : 14.0
+    }, {
+      "vertex" : 26609175,
+      "weight" : 94.0
+    } ],
+    "5134398652" : [ {
+      "vertex" : 678874676,
+      "weight" : 120.0
+    } ],
+    "26639009" : [ {
+      "vertex" : 27023891,
+      "weight" : 112.0
+    } ],
+    "26609133" : [ {
+      "vertex" : 26609136,
+      "weight" : 140.0
+    }, {
+      "vertex" : 26609175,
+      "weight" : 248.0
+    }, {
+      "vertex" : 26609129,
+      "weight" : 139.0
+    } ],
+    "26609130" : [ {
+      "vertex" : 27023892,
+      "weight" : 115.0
+    } ],
+    "26609129" : [ {
+      "vertex" : 26609133,
+      "weight" : 139.0
+    }, {
+      "vertex" : 26639009,
+      "weight" : 130.0
+    }, {
+      "vertex" : 26678576,
+      "weight" : 167.0
+    } ]
+  },
+  "routeSteps" : [ {
+    "id" : 1,
+    "startVertex" : 26695895,
+    "endVertex" : 26695895,
+    "prevStep" : 115,
+    "nextStep" : 2,
+    "anchor" : null,
+    "isActive" : true,
+    "start" : true
+  }, {
+    "id" : 2,
+    "startVertex" : 26695895,
+    "endVertex" : 27023894,
+    "prevStep" : 1,
+    "nextStep" : 3,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 3,
+    "startVertex" : 27023894,
+    "endVertex" : 26695895,
+    "prevStep" : 2,
+    "nextStep" : 4,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 4,
+    "startVertex" : 26695895,
+    "endVertex" : 27023894,
+    "prevStep" : 3,
+    "nextStep" : 5,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 5,
+    "startVertex" : 27023894,
+    "endVertex" : 26695895,
+    "prevStep" : 4,
+    "nextStep" : 6,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 6,
+    "startVertex" : 26695895,
+    "endVertex" : 26695910,
+    "prevStep" : 5,
+    "nextStep" : 7,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 7,
+    "startVertex" : 26695910,
+    "endVertex" : 26695897,
+    "prevStep" : 6,
+    "nextStep" : 8,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 8,
+    "startVertex" : 26695897,
+    "endVertex" : 26609136,
+    "prevStep" : 7,
+    "nextStep" : 9,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 9,
+    "startVertex" : 26609136,
+    "endVertex" : 26609133,
+    "prevStep" : 8,
+    "nextStep" : 10,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 10,
+    "startVertex" : 26609133,
+    "endVertex" : 26609175,
+    "prevStep" : 9,
+    "nextStep" : 11,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 11,
+    "startVertex" : 26609175,
+    "endVertex" : 31200174,
+    "prevStep" : 10,
+    "nextStep" : 12,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 12,
+    "startVertex" : 31200174,
+    "endVertex" : 409108466,
+    "prevStep" : 11,
+    "nextStep" : 13,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 13,
+    "startVertex" : 409108466,
+    "endVertex" : 26695911,
+    "prevStep" : 12,
+    "nextStep" : 14,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 14,
+    "startVertex" : 26695911,
+    "endVertex" : 31200173,
+    "prevStep" : 13,
+    "nextStep" : 15,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 15,
+    "startVertex" : 31200173,
+    "endVertex" : 31200174,
+    "prevStep" : 14,
+    "nextStep" : 16,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 16,
+    "startVertex" : 31200174,
+    "endVertex" : 31200173,
+    "prevStep" : 15,
+    "nextStep" : 17,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 17,
+    "startVertex" : 31200173,
+    "endVertex" : 26695911,
+    "prevStep" : 16,
+    "nextStep" : 18,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 18,
+    "startVertex" : 26695911,
+    "endVertex" : 31200173,
+    "prevStep" : 17,
+    "nextStep" : 19,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 19,
+    "startVertex" : 31200173,
+    "endVertex" : 26609136,
+    "prevStep" : 18,
+    "nextStep" : 20,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 20,
+    "startVertex" : 26609136,
+    "endVertex" : 31200173,
+    "prevStep" : 19,
+    "nextStep" : 21,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 21,
+    "startVertex" : 31200173,
+    "endVertex" : 26695911,
+    "prevStep" : 20,
+    "nextStep" : 22,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 22,
+    "startVertex" : 26695911,
+    "endVertex" : 409108466,
+    "prevStep" : 21,
+    "nextStep" : 23,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 23,
+    "startVertex" : 409108466,
+    "endVertex" : 26695911,
+    "prevStep" : 22,
+    "nextStep" : 24,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 24,
+    "startVertex" : 26695911,
+    "endVertex" : 409108466,
+    "prevStep" : 23,
+    "nextStep" : 25,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 25,
+    "startVertex" : 409108466,
+    "endVertex" : 31200174,
+    "prevStep" : 24,
+    "nextStep" : 26,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 26,
+    "startVertex" : 31200174,
+    "endVertex" : 409108466,
+    "prevStep" : 25,
+    "nextStep" : 27,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 27,
+    "startVertex" : 409108466,
+    "endVertex" : 31200174,
+    "prevStep" : 26,
+    "nextStep" : 28,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 28,
+    "startVertex" : 31200174,
+    "endVertex" : 26609175,
+    "prevStep" : 27,
+    "nextStep" : 29,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 29,
+    "startVertex" : 26609175,
+    "endVertex" : 31200174,
+    "prevStep" : 28,
+    "nextStep" : 30,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 30,
+    "startVertex" : 31200174,
+    "endVertex" : 26609175,
+    "prevStep" : 29,
+    "nextStep" : 31,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 31,
+    "startVertex" : 26609175,
+    "endVertex" : 27023890,
+    "prevStep" : 30,
+    "nextStep" : 32,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 32,
+    "startVertex" : 27023890,
+    "endVertex" : 26609129,
+    "prevStep" : 31,
+    "nextStep" : 33,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 33,
+    "startVertex" : 26609129,
+    "endVertex" : 26639009,
+    "prevStep" : 32,
+    "nextStep" : 34,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 34,
+    "startVertex" : 26639009,
+    "endVertex" : 27023891,
+    "prevStep" : 33,
+    "nextStep" : 35,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 35,
+    "startVertex" : 27023891,
+    "endVertex" : 27023892,
+    "prevStep" : 34,
+    "nextStep" : 36,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 36,
+    "startVertex" : 27023892,
+    "endVertex" : 34639066,
+    "prevStep" : 35,
+    "nextStep" : 37,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 37,
+    "startVertex" : 34639066,
+    "endVertex" : 26609133,
+    "prevStep" : 36,
+    "nextStep" : 38,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 38,
+    "startVertex" : 26609133,
+    "endVertex" : 34639066,
+    "prevStep" : 37,
+    "nextStep" : 39,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 39,
+    "startVertex" : 34639066,
+    "endVertex" : 26639009,
+    "prevStep" : 38,
+    "nextStep" : 40,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 40,
+    "startVertex" : 26639009,
+    "endVertex" : 34639066,
+    "prevStep" : 39,
+    "nextStep" : 41,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 41,
+    "startVertex" : 34639066,
+    "endVertex" : 27023892,
+    "prevStep" : 40,
+    "nextStep" : 42,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 42,
+    "startVertex" : 27023892,
+    "endVertex" : 27023894,
+    "prevStep" : 41,
+    "nextStep" : 43,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 43,
+    "startVertex" : 27023894,
+    "endVertex" : 27023892,
+    "prevStep" : 42,
+    "nextStep" : 44,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 44,
+    "startVertex" : 27023892,
+    "endVertex" : 27023891,
+    "prevStep" : 43,
+    "nextStep" : 45,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 45,
+    "startVertex" : 27023891,
+    "endVertex" : 26639009,
+    "prevStep" : 44,
+    "nextStep" : 46,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 46,
+    "startVertex" : 26639009,
+    "endVertex" : 26609129,
+    "prevStep" : 45,
+    "nextStep" : 47,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 47,
+    "startVertex" : 26609129,
+    "endVertex" : 26678576,
+    "prevStep" : 46,
+    "nextStep" : 48,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 48,
+    "startVertex" : 26678576,
+    "endVertex" : 678874676,
+    "prevStep" : 47,
+    "nextStep" : 49,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 49,
+    "startVertex" : 678874676,
+    "endVertex" : 5134398652,
+    "prevStep" : 48,
+    "nextStep" : 50,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 50,
+    "startVertex" : 5134398652,
+    "endVertex" : 678874676,
+    "prevStep" : 49,
+    "nextStep" : 51,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 51,
+    "startVertex" : 678874676,
+    "endVertex" : 5134398652,
+    "prevStep" : 50,
+    "nextStep" : 52,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 52,
+    "startVertex" : 5134398652,
+    "endVertex" : 678874676,
+    "prevStep" : 51,
+    "nextStep" : 53,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 53,
+    "startVertex" : 678874676,
+    "endVertex" : 26678576,
+    "prevStep" : 52,
+    "nextStep" : 54,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 54,
+    "startVertex" : 26678576,
+    "endVertex" : 678874676,
+    "prevStep" : 53,
+    "nextStep" : 55,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 55,
+    "startVertex" : 678874676,
+    "endVertex" : 26678576,
+    "prevStep" : 54,
+    "nextStep" : 56,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 56,
+    "startVertex" : 26678576,
+    "endVertex" : 26609129,
+    "prevStep" : 55,
+    "nextStep" : 57,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 57,
+    "startVertex" : 26609129,
+    "endVertex" : 26678576,
+    "prevStep" : 56,
+    "nextStep" : 58,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 58,
+    "startVertex" : 26678576,
+    "endVertex" : 26609129,
+    "prevStep" : 57,
+    "nextStep" : 59,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 59,
+    "startVertex" : 26609129,
+    "endVertex" : 26609133,
+    "prevStep" : 58,
+    "nextStep" : 60,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 60,
+    "startVertex" : 26609133,
+    "endVertex" : 26609129,
+    "prevStep" : 59,
+    "nextStep" : 61,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 61,
+    "startVertex" : 26609129,
+    "endVertex" : 27023890,
+    "prevStep" : 60,
+    "nextStep" : 62,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 62,
+    "startVertex" : 27023890,
+    "endVertex" : 26609175,
+    "prevStep" : 61,
+    "nextStep" : 63,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 63,
+    "startVertex" : 26609175,
+    "endVertex" : 27023890,
+    "prevStep" : 62,
+    "nextStep" : 64,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 64,
+    "startVertex" : 27023890,
+    "endVertex" : 26609175,
+    "prevStep" : 63,
+    "nextStep" : 65,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 65,
+    "startVertex" : 26609175,
+    "endVertex" : 26609133,
+    "prevStep" : 64,
+    "nextStep" : 66,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 66,
+    "startVertex" : 26609133,
+    "endVertex" : 26609129,
+    "prevStep" : 65,
+    "nextStep" : 67,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 67,
+    "startVertex" : 26609129,
+    "endVertex" : 26609133,
+    "prevStep" : 66,
+    "nextStep" : 68,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 68,
+    "startVertex" : 26609133,
+    "endVertex" : 26609129,
+    "prevStep" : 67,
+    "nextStep" : 69,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 69,
+    "startVertex" : 26609129,
+    "endVertex" : 26639009,
+    "prevStep" : 68,
+    "nextStep" : 70,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 70,
+    "startVertex" : 26639009,
+    "endVertex" : 26609129,
+    "prevStep" : 69,
+    "nextStep" : 71,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 71,
+    "startVertex" : 26609129,
+    "endVertex" : 26678576,
+    "prevStep" : 70,
+    "nextStep" : 72,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 72,
+    "startVertex" : 26678576,
+    "endVertex" : 26609129,
+    "prevStep" : 71,
+    "nextStep" : 73,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 73,
+    "startVertex" : 26609129,
+    "endVertex" : 26609133,
+    "prevStep" : 72,
+    "nextStep" : 74,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 74,
+    "startVertex" : 26609133,
+    "endVertex" : 26609136,
+    "prevStep" : 73,
+    "nextStep" : 75,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 75,
+    "startVertex" : 26609136,
+    "endVertex" : 26609133,
+    "prevStep" : 74,
+    "nextStep" : 76,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 76,
+    "startVertex" : 26609133,
+    "endVertex" : 26609136,
+    "prevStep" : 75,
+    "nextStep" : 77,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 77,
+    "startVertex" : 26609136,
+    "endVertex" : 31200173,
+    "prevStep" : 76,
+    "nextStep" : 78,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 78,
+    "startVertex" : 31200173,
+    "endVertex" : 31200174,
+    "prevStep" : 77,
+    "nextStep" : 79,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 79,
+    "startVertex" : 31200174,
+    "endVertex" : 31200173,
+    "prevStep" : 78,
+    "nextStep" : 80,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 80,
+    "startVertex" : 31200173,
+    "endVertex" : 26695911,
+    "prevStep" : 79,
+    "nextStep" : 81,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 81,
+    "startVertex" : 26695911,
+    "endVertex" : 31200173,
+    "prevStep" : 80,
+    "nextStep" : 82,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 82,
+    "startVertex" : 31200173,
+    "endVertex" : 26609136,
+    "prevStep" : 81,
+    "nextStep" : 83,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 83,
+    "startVertex" : 26609136,
+    "endVertex" : 31200173,
+    "prevStep" : 82,
+    "nextStep" : 84,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 84,
+    "startVertex" : 31200173,
+    "endVertex" : 26609136,
+    "prevStep" : 83,
+    "nextStep" : 85,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 85,
+    "startVertex" : 26609136,
+    "endVertex" : 26609164,
+    "prevStep" : 84,
+    "nextStep" : 86,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 86,
+    "startVertex" : 26609164,
+    "endVertex" : 26695890,
+    "prevStep" : 85,
+    "nextStep" : 87,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 87,
+    "startVertex" : 26695890,
+    "endVertex" : 26609164,
+    "prevStep" : 86,
+    "nextStep" : 88,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 88,
+    "startVertex" : 26609164,
+    "endVertex" : 26695890,
+    "prevStep" : 87,
+    "nextStep" : 89,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 89,
+    "startVertex" : 26695890,
+    "endVertex" : 26695910,
+    "prevStep" : 88,
+    "nextStep" : 90,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 90,
+    "startVertex" : 26695910,
+    "endVertex" : 26695890,
+    "prevStep" : 89,
+    "nextStep" : 91,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 91,
+    "startVertex" : 26695890,
+    "endVertex" : 26609164,
+    "prevStep" : 90,
+    "nextStep" : 92,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 92,
+    "startVertex" : 26609164,
+    "endVertex" : 29029083,
+    "prevStep" : 91,
+    "nextStep" : 93,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 93,
+    "startVertex" : 29029083,
+    "endVertex" : 26609164,
+    "prevStep" : 92,
+    "nextStep" : 94,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 94,
+    "startVertex" : 26609164,
+    "endVertex" : 29029083,
+    "prevStep" : 93,
+    "nextStep" : 95,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 95,
+    "startVertex" : 29029083,
+    "endVertex" : 26609164,
+    "prevStep" : 94,
+    "nextStep" : 96,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 96,
+    "startVertex" : 26609164,
+    "endVertex" : 31200176,
+    "prevStep" : 95,
+    "nextStep" : 97,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 97,
+    "startVertex" : 31200176,
+    "endVertex" : 31200173,
+    "prevStep" : 96,
+    "nextStep" : 98,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 98,
+    "startVertex" : 31200173,
+    "endVertex" : 31200176,
+    "prevStep" : 97,
+    "nextStep" : 99,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 99,
+    "startVertex" : 31200176,
+    "endVertex" : 26609164,
+    "prevStep" : 98,
+    "nextStep" : 100,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 100,
+    "startVertex" : 26609164,
+    "endVertex" : 31200176,
+    "prevStep" : 99,
+    "nextStep" : 101,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 101,
+    "startVertex" : 31200176,
+    "endVertex" : 26609164,
+    "prevStep" : 100,
+    "nextStep" : 102,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 102,
+    "startVertex" : 26609164,
+    "endVertex" : 26609136,
+    "prevStep" : 101,
+    "nextStep" : 103,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 103,
+    "startVertex" : 26609136,
+    "endVertex" : 26609164,
+    "prevStep" : 102,
+    "nextStep" : 104,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 104,
+    "startVertex" : 26609164,
+    "endVertex" : 26609136,
+    "prevStep" : 103,
+    "nextStep" : 105,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 105,
+    "startVertex" : 26609136,
+    "endVertex" : 26695897,
+    "prevStep" : 104,
+    "nextStep" : 106,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 106,
+    "startVertex" : 26695897,
+    "endVertex" : 26609136,
+    "prevStep" : 105,
+    "nextStep" : 107,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 107,
+    "startVertex" : 26609136,
+    "endVertex" : 26695897,
+    "prevStep" : 106,
+    "nextStep" : 108,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 108,
+    "startVertex" : 26695897,
+    "endVertex" : 26695900,
+    "prevStep" : 107,
+    "nextStep" : 109,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 109,
+    "startVertex" : 26695900,
+    "endVertex" : 34639066,
+    "prevStep" : 108,
+    "nextStep" : 110,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 110,
+    "startVertex" : 34639066,
+    "endVertex" : 26695900,
+    "prevStep" : 109,
+    "nextStep" : 111,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 111,
+    "startVertex" : 26695900,
+    "endVertex" : 26695895,
+    "prevStep" : 110,
+    "nextStep" : 112,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 112,
+    "startVertex" : 26695895,
+    "endVertex" : 26695900,
+    "prevStep" : 111,
+    "nextStep" : 113,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 113,
+    "startVertex" : 26695900,
+    "endVertex" : 26695897,
+    "prevStep" : 112,
+    "nextStep" : 114,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 114,
+    "startVertex" : 26695897,
+    "endVertex" : 26695910,
+    "prevStep" : 113,
+    "nextStep" : 115,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  }, {
+    "id" : 115,
+    "startVertex" : 26695910,
+    "endVertex" : 26695895,
+    "prevStep" : 114,
+    "nextStep" : 1,
+    "anchor" : 1,
+    "isActive" : true,
+    "start" : false
+  } ]
+}

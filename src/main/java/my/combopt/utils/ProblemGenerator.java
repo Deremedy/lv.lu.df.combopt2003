@@ -11,7 +11,7 @@ import org.json.JSONArray;
 public class ProblemGenerator {
     public RouteSolution generateSimpleProblem() {
         RouteSolution problem = new RouteSolution();
-        problem.setSolutionId("P1");
+        problem.setSolutionId("P0");
 
         // V4 ? V3
         // ?     ?
@@ -124,8 +124,57 @@ public class ProblemGenerator {
     }
 
     public RouteSolution getProblem1() {
-        RouteSolution problem = generateProblemFromJson("data/problems/problem118_500.json");
+        RouteSolution problem = generateProblemFromJson("data/problems/problem14_200.json");
+        problem.setSolutionId("P1");
+
+        problem.setStartVertex(problem.getVertexList().get(0));
+
+        List<RouteStep> routeSteps = generateRouteSteps(problem);
+        problem.setRouteSteps(routeSteps);
+
+        return problem;
+    }
+
+    public RouteSolution getProblem2() {
+        RouteSolution problem = generateProblemFromJson("data/problems/problem52_300.json");
         problem.setSolutionId("P2");
+
+        problem.setStartVertex(problem.getVertexList().get(0));
+
+        List<RouteStep> routeSteps = generateRouteSteps(problem);
+        problem.setRouteSteps(routeSteps);
+
+        return problem;
+    }
+
+    public RouteSolution getProblem3() {
+        RouteSolution problem = generateProblemFromJson("data/problems/problem118_500.json");
+        problem.setSolutionId("P3");
+
+        problem.setStartVertex(problem.getVertexList().get(0));
+
+        List<RouteStep> routeSteps = generateRouteSteps(problem);
+        problem.setRouteSteps(routeSteps);
+
+        return problem;
+    }
+
+
+    public RouteSolution getProblem4() {
+        RouteSolution problem = generateProblemFromJson("data/problems/problem173_600.json");
+        problem.setSolutionId("P4");
+
+        problem.setStartVertex(problem.getVertexList().get(0));
+
+        List<RouteStep> routeSteps = generateRouteSteps(problem);
+        problem.setRouteSteps(routeSteps);
+
+        return problem;
+    }
+
+    public RouteSolution getProblem5() {
+        RouteSolution problem = generateProblemFromJson("data/problems/problem293_800.json");
+        problem.setSolutionId("P5");
 
         problem.setStartVertex(problem.getVertexList().get(0));
 
