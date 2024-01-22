@@ -59,20 +59,6 @@ $(document).ready(function () {
             })
         });
 
-    // let playButton = $("#play");
-    // playButton.click(function () {
-    //     L.motion.polyline(coordinates, {
-    //         color: "indigo"
-    //     }, {
-    //         auto: true,
-    //         removeOnEnd: true,
-    //         duration: $("#duration").val(),
-    //     }, {
-    //         showMarker: true,
-    //         icon: vehicleIcon
-    //     }).addTo(map).motionToggle();
-    // });
-
     let playButton = $("#play");
     playButton.click(function () {
         motionObject = L.motion.polyline(coordinates, {

@@ -67,10 +67,22 @@ public class RoutingController {
     @PostConstruct
     public void init() {
         ProblemGenerator problemGenerator = new ProblemGenerator();
-        RouteSolution problem1 = problemGenerator.getProblem3();
+        RouteSolution problem1 = problemGenerator.getProblem1();
+        RouteSolution problem2 = problemGenerator.getProblem2();
+        RouteSolution problem3 = problemGenerator.getProblem3();
+        RouteSolution problem4 = problemGenerator.getProblem4();
+        RouteSolution problem5 = problemGenerator.getProblem5();
 //        ghRouter.setDistanceTimeMap(problem50.getLocationList());
         //solutionIOJSON.write(problem50, new File("data/exampleRiga50.json"));
         solverManager.solveAndListen(problem1.getSolutionId(), id -> problem1, solution -> {
+            solutionMap.put(solution.getSolutionId(), solution);});
+        solverManager.solveAndListen(problem2.getSolutionId(), id -> problem2, solution -> {
+            solutionMap.put(solution.getSolutionId(), solution);});
+        solverManager.solveAndListen(problem3.getSolutionId(), id -> problem3, solution -> {
+            solutionMap.put(solution.getSolutionId(), solution);});
+        solverManager.solveAndListen(problem4.getSolutionId(), id -> problem4, solution -> {
+            solutionMap.put(solution.getSolutionId(), solution);});
+        solverManager.solveAndListen(problem5.getSolutionId(), id -> problem5, solution -> {
             solutionMap.put(solution.getSolutionId(), solution);});
     }
 }

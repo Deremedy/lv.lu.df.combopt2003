@@ -51,10 +51,10 @@
             </subChainSwapMoveSelector>
         </unionMoveSelector>
         <acceptor>
-            <valueTabuSize>2</valueTabuSize>
+            <lateAcceptanceSize>400</lateAcceptanceSize>
         </acceptor>
         <forager>
-            <acceptedCountLimit>1000</acceptedCountLimit>
+            <acceptedCountLimit>1</acceptedCountLimit>
         </forager>
     </localSearch>
 </solver>
