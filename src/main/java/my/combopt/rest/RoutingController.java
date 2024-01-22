@@ -41,10 +41,11 @@ public class RoutingController {
     public RouteSolution solution(@RequestParam String id) {
         return solutionMap.get(id);
     }
-//    @GetMapping("/list")
-//    public List<RoutingSolution> list() {
-//        return solutionMap.values().stream().toList();
-//    }
+
+    @GetMapping("/list")
+    public List<RouteSolution> list() {
+        return solutionMap.values().stream().toList();
+    }
 //
 //    @GetMapping("/score")
 //    public ScoreAnalysis<HardSoftScore> score(@RequestParam String id) {
