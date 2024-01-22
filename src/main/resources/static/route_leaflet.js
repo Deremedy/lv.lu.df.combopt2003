@@ -1,31 +1,12 @@
 var map = L.map('map').setView([56.958141067669146, 24.12462850613549], 14);
-var color_idx = 0;
 const colors = ["#f44336","#e81e63","#9c27b0","#673ab7","#3f51b5","#2196f3","#03a9f4","#00bcd4","#009688",
                                                 "#4caf50","#8bc34a","#cddc39","#ffeb3b","#ffc107","#ff9800","#ff5722"];
-                       ;
-const defaultIcon = new L.Icon.Default();
 const vehicleIcon = L.divIcon({
     html: '<i class="fas fa-truck"></i>'
 });
 const pickupIcon = L.divIcon({
     html: '<i class="fas fa-2x fa-building"></i>'
 });
-const deliveryIcon = L.divIcon({
-    html: '<i class="far fa-building"></i>'
-});
-const stockIcon = L.divIcon({
-    html: '<i class="fas fa-warehouse"></i>'
-});
-const pickupIcon_red = L.divIcon({
-    html: '<i class="fas fa-building" style="color: #ff0000"></i>'
-});
-const deliveryIcon_red = L.divIcon({
-    html: '<i class="far fa-building" style="color: #ff0000"></i>'
-});
-const stockIcon_red = L.divIcon({
-    html: '<i class="fas fa-warehouse" style="color: #ff0000"></i>'
-});
-
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const solutionId = urlParams.get('id');
@@ -100,11 +81,11 @@ function renderRoutes(solution, indictments) {
     });
 
     var step_counter = 1;
-    var routeStartStep = solution.routeSteps.find((step) => step.id === 0);
+    var routeStartStep = solution.routeSteps.find((step) => step.start);
     let next_step = routeStartStep;
     let coordinates = [];
 
-    let startVertex = solution.vertexList.find((vertex) => vertex.id === next_step.startVertex);
+    let startVertex = solution.vertexList.find((vertex) => vertex.id === solution.startVertex);
     const vmarker = L.marker([startVertex.lat, startVertex.lon]).addTo(map);
     vmarker.setIcon(pickupIcon);
 
@@ -123,7 +104,7 @@ function renderRoutes(solution, indictments) {
         // L.polyline([startLocation, endLocation], {color: vcolor}).addTo(map);
 
         next_step = solution.routeSteps.find((step) => step.id === next_step.nextStep);
-        if (next_step.id === 0) {
+        if (next_step.start) {
             next_step = null;
         }
         step_counter++;
@@ -148,19 +129,6 @@ function getEntityPopoverContent(entityId, indictmentMap) {
     return popover_content;
 }
 
-function getVisitIcon(v_type, indictment) {
-    if (indictment==undefined || getHardScore(indictment.score) == 0) {
-        return v_type == "STOCK" ? stockIcon : v_type == "PICKUP" ? pickupIcon : deliveryIcon;
-    } else {
-        return v_type == "STOCK" ? stockIcon_red : v_type == "PICKUP" ? pickupIcon_red : deliveryIcon_red;
-    }
-}
-
-function getColor() {
-   color_idx = (color_idx + 1) % colors.length;
-   return colors[color_idx];
-}
-
 function getScorePopoverContent(constraint_list) {
     var popover_content = "";
     constraint_list.forEach((constraint) => {
@@ -179,13 +147,4 @@ function getHardScore(score) {
 
 function getSoftScore(score) {
    return score.slice(score.indexOf("hard/"),score.indexOf("soft"))
-}
-
-function formatTime(timeInSeconds) {
-        if (timeInSeconds != null) {
-            const HH = Math.floor(timeInSeconds / 3600);
-            const MM = Math.floor((timeInSeconds % 3600) / 60);
-            const SS = Math.floor(timeInSeconds % 60);
-            return HH + ":" + MM + ":" + SS;
-        } else return "null";
 }

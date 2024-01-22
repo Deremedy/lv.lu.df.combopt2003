@@ -25,13 +25,10 @@ public class RoutingController {
     @Autowired
     private SolutionManager<RouteSolution, HardSoftScore> solutionManager;
 
-    private Map<String, RouteSolution> solutionMap = new HashMap<>();
-
-//    private Router ghRouter = Router.getDefaultRouterInstance();
+    private final Map<String, RouteSolution> solutionMap = new HashMap<>();
 
     @PostMapping("/solve")
     public void solve(@RequestBody RouteSolution problem) {
-//        ghRouter.setDistanceTimeMap(problem.getLocationList());
         solverManager.solveAndListen(problem.getSolutionId(), id -> problem,
                 solution -> solutionMap.put(solution.getSolutionId(), solution));
     }
@@ -74,8 +71,8 @@ public class RoutingController {
         RouteSolution problem5 = problemGenerator.getProblem5();
 //        ghRouter.setDistanceTimeMap(problem50.getLocationList());
         //solutionIOJSON.write(problem50, new File("data/exampleRiga50.json"));
-        solverManager.solveAndListen(problem1.getSolutionId(), id -> problem1, solution -> {
-            solutionMap.put(solution.getSolutionId(), solution);});
+//        solverManager.solveAndListen(problem1.getSolutionId(), id -> problem1, solution -> {
+//            solutionMap.put(solution.getSolutionId(), solution);});
         solverManager.solveAndListen(problem2.getSolutionId(), id -> problem2, solution -> {
             solutionMap.put(solution.getSolutionId(), solution);});
         solverManager.solveAndListen(problem3.getSolutionId(), id -> problem3, solution -> {
