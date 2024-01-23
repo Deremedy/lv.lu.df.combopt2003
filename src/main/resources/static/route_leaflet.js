@@ -7,6 +7,21 @@ const vehicleIcon = L.divIcon({
 const pickupIcon = L.divIcon({
     html: '<i class="fas fa-2x fa-building"></i>'
 });
+const dotIcon = L.divIcon({
+    html: '<i class="far fa-dot-circle"></i>'
+});
+const oneWayIcon = L.divIcon({
+    html: '<i class="fa-solid fa-arrow-right"></i>'
+});
+const redOneWayIcon = L.divIcon({
+    html: '<i class="fa-solid fa-arrow-right" style="color:red"></i>'
+});
+const twoWayIcon = L.divIcon({
+    html: '<i class="fa-solid fa-arrows-left-right"></i>'
+});
+const redTwoWayIcon = L.divIcon({
+    html: '<i class="fa-solid fa-arrows-left-right" style="color:red"></i>'
+});
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const solutionId = urlParams.get('id');
@@ -79,6 +94,85 @@ function renderRoutes(solution, indictments) {
         let endLocation = [endVertex.lat, endVertex.lon];
         L.polyline([startLocation, endLocation], {color: 'red'}).addTo(map);
     });
+
+    // Render edge markers
+    let visitedEdges = new Set();
+    solution.edgeList.forEach((edge) => {
+        if (visitedEdges.has(edge.id)) {
+            return;
+        }
+        let startVertex = solution.vertexList.find((vertex) => vertex.id === edge.start);
+        let endVertex = solution.vertexList.find((vertex) => vertex.id === edge.end);
+        let startLocation = [startVertex.lat, startVertex.lon];
+        let endLocation = [endVertex.lat, endVertex.lon];
+
+        const marker = L.marker([(startVertex.lat + endVertex.lat) / 2, (startVertex.lon + endVertex.lon) / 2]).addTo(map);
+
+        let edgePopoverContent = "";
+        marker.setIcon(oneWayIcon);
+        edgePopoverContent += "<b>#"+edge.id+"</b><br>" +
+            "Start: <b>#"+edge.start+"</b><br>" +
+            "End: <b>#"+edge.end+"</b><br>";
+
+        let oppositeEdge = solution.edgeList.find((e) => e.start === edge.end && e.end === edge.start);
+        if (oppositeEdge) {
+            edgePopoverContent += "<hr>" +
+                "<b>#"+oppositeEdge.id+"</b><br>" +
+                "Start: <b>#"+oppositeEdge.start+"</b><br>" +
+                "End: <b>#"+oppositeEdge.end+"</b><br>";
+            visitedEdges.add(oppositeEdge.id);
+        }
+
+        let step = solution.routeSteps.find((step) => step.startVertex === edge.start && step.endVertex === edge.end);
+        let wasStepTravelled = true;
+        if (step) {
+            let indictmentId = 'RouteStep'+step.id;
+            edgePopoverContent += "<hr>" +
+                "Route step: <b>#"+step.id+"</b><br>" +
+                "Start vertex: <b>#"+step.startVertex+"</b><br>" +
+                "End vertex: <b>#"+step.endVertex+"</b><br>" +
+                "Next step: <b>#"+step.nextStep+"</b><br>" +
+                "<hr>" +
+                getEntityPopoverContent(indictmentId, indictmentMap);
+        } else {
+            wasStepTravelled = false;
+        }
+
+        visitedEdges.add(edge.id);
+        if (oppositeEdge) {
+            let oppositeStep = solution.routeSteps.find((step) => step.startVertex === oppositeEdge.start && step.endVertex === oppositeEdge.end);
+            let indictmentId = 'RouteStep'+oppositeStep.id;
+            if (oppositeStep) {
+                edgePopoverContent += "<hr>" +
+                    "Route step: <b>#"+oppositeStep.id+"</b><br>" +
+                    "Start vertex: <b>#"+oppositeStep.startVertex+"</b><br>" +
+                    "End vertex: <b>#"+oppositeStep.endVertex+"</b><br>" +
+                    "Next step: <b>#"+oppositeStep.nextStep+"</b><br>" +
+                    "<hr>" +
+                    getEntityPopoverContent(indictmentId, indictmentMap);
+                marker.setIcon(twoWayIcon);
+            } else {
+                marker.setIcon(redTwoWayIcon);
+            }
+        } else {
+            if (wasStepTravelled) {
+                marker.setIcon(oneWayIcon);
+            } else {
+                marker.setIcon(redOneWayIcon);
+            }
+        }
+        marker.bindPopup(edgePopoverContent);
+    });
+
+    // Render vertices markers
+    solution.vertexList.forEach((vertex) => {
+        const marker = L.marker([vertex.lat, vertex.lon]).addTo(map);
+        marker.setIcon(dotIcon);
+        marker.bindPopup("<b>#"+vertex.id+"</b><br>");
+    });
+
+    // Render step markers
+
 
     var step_counter = 1;
     var routeStartStep = solution.routeSteps.find((step) => step.start);
